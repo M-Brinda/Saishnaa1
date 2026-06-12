@@ -1,0 +1,2817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="img/sai.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags (Dynamically updated via JS) -->
+  <title>Journal Details | Saishnaa Software Solutions</title>
+  <meta name="description" content="Detailed guidelines, scope, and editorial board for SSRG academic journals." />
+
+  <!-- CDNs & Web Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+
+  <style>
+    /* Layout structure */
+    .details-wrapper {
+      min-height: 100vh;
+      background-color: #f7f9fc;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    /* Sidebar Menu - Compacted for 14 items */
+    .sidebar-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(77, 30, 163, 0.04);
+      border: 1px solid rgba(77, 30, 163, 0.08);
+      padding: 15px 10px;
+      position: sticky;
+      top: 100px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    /* Custom thin scrollbar for sidebar */
+    .sidebar-card::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .sidebar-card::-webkit-scrollbar-thumb {
+      background: rgba(77, 30, 163, 0.2);
+      border-radius: 4px;
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1a1a2e;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(77, 30, 163, 0.1);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-item a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: #555;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-item a:hover {
+      background-color: rgba(77, 30, 163, 0.05);
+      color: var(--main-color);
+      transform: translateX(3px);
+    }
+
+    .sidebar-item.active a {
+      background: linear-gradient(135deg, var(--main-color), #7645fc);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(77, 30, 163, 0.2);
+    }
+
+    /* Content blocks */
+    .content-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(77, 30, 163, 0.05);
+      padding: 40px;
+      margin-bottom: 30px;
+      display: none;
+      animation: cardFadeIn 0.4s ease forwards;
+    }
+
+    .content-card.active {
+      display: block;
+    }
+
+    @keyframes cardFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stats rings & metrics grid */
+    .metric-box {
+      background: linear-gradient(135deg, #ffffff 0%, #fbfaff 100%);
+      border: 1px solid rgba(77, 30, 163, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .metric-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(77, 30, 163, 0.08);
+      border-color: rgba(77, 30, 163, 0.15);
+    }
+
+    .metric-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--main-color);
+      margin-bottom: 4px;
+    }
+
+    .metric-lbl {
+      font-size: 0.78rem;
+      color: #777;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Editor in chief styling */
+    .eic-card {
+      background: linear-gradient(135deg, #fbfaff 0%, #f4f0ff 100%);
+      border: 1.5px solid rgba(77, 30, 163, 0.15);
+      border-radius: 20px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 35px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .eic-avatar-wrap {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--main-color), #6acae7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2rem;
+      box-shadow: 0 6px 16px rgba(77, 30, 163, 0.25);
+      flex-shrink: 0;
+    }
+
+    .eic-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--main-color);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* Board members filter search */
+    .editors-search-wrap {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .editors-search-wrap input {
+      width: 100%;
+      border-radius: 50px;
+      padding: 12px 24px 12px 50px;
+      border: 1px solid rgba(77, 30, 163, 0.15);
+      outline: none;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: border-color 0.2s;
+    }
+
+    .editors-search-wrap input:focus {
+      border-color: var(--main-color);
+    }
+
+    .editors-search-wrap i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa;
+    }
+
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .board-card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      padding: 20px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+    }
+
+    .board-card:hover {
+      border-color: rgba(77, 30, 163, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(77, 30, 163, 0.06);
+    }
+
+    .board-card-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+
+    .board-card-aff {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Guidelines submission box */
+    .submission-box {
+      background: linear-gradient(135deg, #153e68 0%, #0d2847 100%);
+      border-radius: 20px;
+      color: #fff;
+      padding: 35px;
+      margin-bottom: 35px;
+      box-shadow: 0 10px 30px rgba(13, 40, 71, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submission-box::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(106, 202, 231, 0.15) 0%, rgba(106, 202, 231, 0) 60%);
+      pointer-events: none;
+    }
+
+    .guideline-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+
+    .guideline-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: rgba(106, 202, 231, 0.15);
+      color: #6acae7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .guideline-text {
+      font-size: 0.92rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    /* File Downloads list */
+    .download-card {
+      border: 1px solid rgba(77, 30, 163, 0.1);
+      background-color: #fbfaff;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .download-card:hover {
+      border-color: var(--main-color);
+    }
+
+    /* Indexing grid */
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .badge-card {
+      background: #fff;
+      border: 1.5px dashed rgba(77, 30, 163, 0.15);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 110px;
+      transition: all 0.3s;
+    }
+
+    .badge-card:hover {
+      border-style: solid;
+      border-color: var(--main-color);
+      background: #fbfaff;
+      transform: scale(1.03);
+    }
+
+    .badge-card span {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #4d1ea3;
+    }
+
+    /* Navigation details headers */
+    .section-heading-inner {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: #fff;
+      color: #153e68;
+    }
+
+    /* Editorial timeline step formatting */
+    .editorial-timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-top: 20px;
+    }
+
+    .editorial-timeline::before {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 5px;
+      bottom: 5px;
+      width: 2px;
+      background: rgba(77, 30, 163, 0.15);
+    }
+
+    .timeline-step {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .timeline-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: -30px;
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--main-color), #7645fc);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(77, 30, 163, 0.2);
+    }
+
+    .timeline-step-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+
+    .timeline-step-desc {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Paper card styling for current issue */
+    .paper-card {
+      background: #fff;
+      border: 1px solid rgba(77, 30, 163, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    }
+
+    .paper-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(77, 30, 163, 0.06);
+      border-color: rgba(77, 30, 163, 0.18);
+    }
+
+    .paper-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #1a1a2e;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .paper-authors {
+      font-size: 0.88rem;
+      color: #666;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .paper-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+
+    /* Custom styles for premium buttons */
+    .btn-purple {
+      background: linear-gradient(135deg, var(--main-color), #7645fc);
+      color: white;
+      border: none;
+      transition: all 0.3s;
+    }
+
+    .btn-purple:hover {
+      background: linear-gradient(135deg, #3c1485, var(--main-color));
+      color: white;
+      box-shadow: 0 4px 15px rgba(77, 30, 163, 0.3);
+    }
+
+    /* Accordion Custom Styling */
+    .accordion-item {
+      border: 1px solid rgba(77, 30, 163, 0.08) !important;
+      border-radius: 12px !important;
+      margin-bottom: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .accordion-button {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: #1a1a2e;
+      background-color: #fff;
+      padding: 16px 20px;
+    }
+
+    .accordion-button:not(.collapsed) {
+      color: var(--main-color);
+      background-color: rgba(77, 30, 163, 0.03);
+      box-shadow: none;
+    }
+
+    .accordion-button::after {
+      background-size: 1rem;
+    }
+
+    .accordion-body {
+      padding: 20px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    /* Mobile layouts */
+    @media (max-width: 991px) {
+      .sidebar-card {
+        position: relative;
+        top: 0;
+        margin-bottom: 30px;
+        max-height: none;
+      }
+
+      .details-wrapper {
+        padding-top: 90px;
+      }
+
+      .eic-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      #right-widgets-sidebar {
+        margin-top: 30px;
+      }
+    }
+
+    /* Right Sidebar Widgets & Ring Chart */
+    .sidebar-widget-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-widget-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(77, 30, 163, 0.08);
+    }
+
+    .sidebar-widget-title {
+      border-bottom: 2px solid rgba(77, 30, 163, 0.08);
+      padding-bottom: 10px;
+    }
+
+    .donut {
+      transform: rotate(-90deg);
+    }
+
+    /* 8-Card Insights Grid */
+    .insights-grid-8 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .insight-card-style {
+      background: #fff;
+      border: 1px solid rgba(77, 30, 163, 0.06);
+      border-radius: 14px;
+      padding: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+    }
+
+    .insight-card-style:hover {
+      transform: translateY(-3px);
+      border-color: rgba(77, 30, 163, 0.15);
+      box-shadow: 0 6px 18px rgba(77, 30, 163, 0.06);
+    }
+
+    /* Smooth transitions for donut chart and custom buttons */
+    .donut circle {
+      transition: stroke-dasharray 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-outline-purple {
+      background: transparent;
+      color: var(--main-color) !important;
+      border: 1.5px solid var(--main-color) !important;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-purple:hover {
+      background: var(--main-color);
+      color: white !important;
+      border-color: var(--main-color) !important;
+      box-shadow: 0 4px 15px rgba(77, 30, 163, 0.2);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Custom Horizontal Journal Navigation Bar (OJS style) -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="journal-navbar"
+    style="background-color: var(--main-color); z-index: 1100; box-shadow: 0 4px 18px rgba(0,0,0,0.1); padding: 15px 0; transition: all 0.4s ease;">
+    <div class="container-fluid px-md-4">
+      <!-- Brand / Journal Title -->
+      <a class="navbar-brand d-flex align-items-center gap-2 me-auto ps-3 text-white" href="journals.html"
+        style="white-space: nowrap;">
+        <img src="img/sai.png" alt="Saishnaa Logo" style="height: 40px; width: auto;" />
+        <span class="fw-bold fs-5 text-white" style="font-family: Outfit, sans-serif;"
+          id="nav-journal-code">JOURNAL</span>
+      </a>
+
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#journalNavbar" aria-controls="journalNavbar" aria-expanded="false"
+        aria-label="Toggle navigation" style="outline: none; box-shadow: none;">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="journalNavbar">
+        <ul class="navbar-nav align-items-center"
+          style="font-size: 0.9rem; font-weight: 500; font-family: 'Poppins', sans-serif;">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="journals.html"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <!-- About Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="aboutDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              About
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="aboutDropdown"
+              style="border-radius: 12px; font-size: 0.85rem; background-color: #fff; min-width: 280px; max-height: 420px; overflow-y: auto;">
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#aim-scope"
+                  onclick="setActiveTab('aim-scope')"><i class="fas fa-bullseye me-2 text-primary"></i> About the
+                  Journal</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#editorial-board"
+                  onclick="setActiveTab('editorial-board')"><i class="fas fa-users-cog me-2 text-primary"></i> Editorial
+                  Board</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#paper-submission"
+                  onclick="setActiveTab('paper-submission')"><i class="fas fa-file-upload me-2 text-primary"></i>
+                  Submissions</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#privacy-statement"
+                  onclick="setActiveTab('privacy-statement')"><i class="fas fa-user-shield me-2 text-primary"></i>
+                  Privacy Statement</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#open-access"
+                  onclick="setActiveTab('open-access')"><i class="fas fa-lock-open me-2 text-primary"></i> Open Access
+                  Policy</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#conflicts-interest"
+                  onclick="setActiveTab('conflicts-interest')"><i class="fas fa-handshake-slash me-2 text-primary"></i>
+                  Conflicts of Interest</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#corrections-retraction"
+                  onclick="setActiveTab('corrections-retraction')"><i class="fas fa-tools me-2 text-primary"></i>
+                  Corrections and Retraction</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#plagiarism-policy"
+                  onclick="setActiveTab('plagiarism-policy')"><i class="fas fa-copy me-2 text-primary"></i> Plagiarism
+                  Policy</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#misconduct-sanctions"
+                  onclick="setActiveTab('misconduct-sanctions')"><i
+                    class="fas fa-exclamation-triangle me-2 text-primary"></i> Misconduct and Sanctions</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#publication-ethics"
+                  onclick="setActiveTab('publication-ethics')"><i class="fas fa-balance-scale me-2 text-primary"></i>
+                  Publication Ethics</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#digital-preservation"
+                  onclick="setActiveTab('digital-preservation')"><i class="fas fa-server me-2 text-primary"></i> Digital
+                  Preservation</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#indexing"
+                  onclick="setActiveTab('indexing')"><i class="fas fa-award me-2 text-primary"></i> Indexing &
+                  Abstracting</a></li>
+              <li class="d-none"><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#apc" onclick="setActiveTab('apc')"><i
+                    class="fas fa-credit-card me-2 text-primary"></i> Article Processing Charges</a></li>
+            </ul>
+          </li>
+          <!-- Archives Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="archivesDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Archives
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="archivesDropdown"
+              style="border-radius: 12px; font-size: 0.85rem; background-color: #fff; min-width: 200px;">
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#current-issue"
+                  onclick="setActiveTab('current-issue')"><i class="fas fa-newspaper me-2 text-primary"></i> Current
+                  Issue</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#archives"
+                  onclick="setActiveTab('archives')"><i class="fas fa-archive me-2 text-primary"></i> Articles &
+                  Issues</a></li>
+            </ul>
+          </li>
+          <!-- Guide for Authors Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="guideDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Guide for Authors
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="guideDropdown"
+              style="border-radius: 12px; font-size: 0.85rem; background-color: #fff; min-width: 220px;">
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#guidelines-authors"
+                  onclick="setActiveTab('guidelines-authors')"><i class="fas fa-pen-fancy me-2 text-primary"></i>
+                  Guidelines for Authors</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#guidelines-editors"
+                  onclick="setActiveTab('guidelines-editors')"><i class="fas fa-user-edit me-2 text-primary"></i>
+                  Guidelines for Editors</a></li>
+              <li><a class="dropdown-item py-2 px-3 fw-medium text-dark" href="#guidelines-reviewer"
+                  onclick="setActiveTab('guidelines-reviewer')"><i class="fas fa-user-check me-2 text-primary"></i>
+                  Guidelines for Reviewer</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#announcements"
+              onclick="setActiveTab('announcements')">Announcements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white d-none" href="#apc-payment" onclick="setActiveTab('apc-payment')">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Wrapper -->
+  <main class="details-wrapper">
+    <div class="container page-fade-in">
+
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-size: 0.88rem; font-weight: 500;">
+          <li class="breadcrumb-item"><a href="index.html" style="color: var(--main-color);">Home</a></li>
+          <li class="breadcrumb-item"><a href="journals.html" style="color: var(--main-color);">Journals</a></li>
+          <li class="breadcrumb-item active" id="breadcrumb-journal-code" aria-current="page">Loading...</li>
+        </ol>
+      </nav>
+
+      <!-- Dynamic Page Hero -->
+      <div
+        class="p-4 p-md-5 mb-5 rounded-4 text-white position-relative overflow-hidden animate__animated animate__fadeIn"
+        id="hero-banner-container" style="
+          background: linear-gradient(135deg, rgba(77, 30, 163, 0.95) 0%, rgba(13, 40, 71, 0.95) 100%);
+          box-shadow: 0 10px 30px rgba(77, 30, 163, 0.12);
+        ">
+        <!-- Dotted network globe outline on the right side of the card -->
+        <svg class="position-absolute" style="right: -50px; top: 50%; transform: translateY(-50%); width: 350px; height: 350px; opacity: 0.12; z-index: 1; pointer-events: none; color: #fff;" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+          <circle cx="50" cy="50" r="45" stroke-width="0.3" stroke-dasharray="1 1"/>
+          <ellipse cx="50" cy="50" rx="45" ry="15" stroke-width="0.3" stroke-dasharray="1 1"/>
+          <ellipse cx="50" cy="50" rx="45" ry="30" stroke-width="0.3" stroke-dasharray="1 1"/>
+          <line x1="5" y1="50" x2="95" y2="50" stroke-width="0.3" stroke-dasharray="1 1"/>
+          <ellipse cx="50" cy="50" rx="15" ry="45" stroke-width="0.3" stroke-dasharray="1 1"/>
+          <ellipse cx="50" cy="50" rx="30" ry="45" stroke-width="0.3" stroke-dasharray="1 1"/>
+          <line x1="50" y1="5" x2="50" y2="95" stroke-width="0.3" stroke-dasharray="1 1"/>
+          <circle cx="50" cy="5" r="1" fill="currentColor"/>
+          <circle cx="50" cy="95" r="1" fill="currentColor"/>
+          <circle cx="20" cy="20" r="0.8" fill="currentColor"/>
+          <circle cx="80" cy="20" r="0.8" fill="currentColor"/>
+          <circle cx="20" cy="80" r="0.8" fill="currentColor"/>
+          <circle cx="80" cy="80" r="0.8" fill="currentColor"/>
+          <circle cx="35" cy="50" r="0.8" fill="currentColor"/>
+          <circle cx="65" cy="50" r="0.8" fill="currentColor"/>
+          <line x1="20" y1="20" x2="50" y2="5" stroke-width="0.2" stroke-dasharray="1 1"/>
+          <line x1="80" y1="20" x2="50" y2="5" stroke-width="0.2" stroke-dasharray="1 1"/>
+          <line x1="20" y1="80" x2="50" y2="95" stroke-width="0.2" stroke-dasharray="1 1"/>
+          <line x1="80" y1="80" x2="50" y2="95" stroke-width="0.2" stroke-dasharray="1 1"/>
+          <line x1="20" y1="20" x2="35" y2="50" stroke-width="0.2" stroke-dasharray="1 1"/>
+          <line x1="80" y1="20" x2="65" y2="50" stroke-width="0.2" stroke-dasharray="1 1"/>
+        </svg>
+
+        <!-- Floating Shapes -->
+        <div class="floating-shapes">
+          <div class="particle" style="width: 10px; height: 10px; top: 10%; left: 5%; animation: float 10s infinite;">
+          </div>
+          <div class="particle" style="width: 15px; height: 15px; top: 60%; left: 90%; animation: float 12s infinite;">
+          </div>
+        </div>
+
+        <div class="row align-items-center g-4" style="position: relative; z-index: 2;">
+          <!-- Left: Content-Oriented Illustration -->
+          <div class="col-md-4 text-center text-md-start">
+            <div id="hero-journal-illustration" class="mx-auto animate__animated animate__zoomIn"
+              style="width: 100%; max-width: 280px; height: 190px; border-radius: 16px; overflow: hidden; background-size: cover; background-position: center; box-shadow: 0 8px 25px rgba(0,0,0,0.25); border: 2.5px solid rgba(255,255,255,0.2);">
+            </div>
+          </div>
+
+          <!-- Right: Text Info -->
+          <div class="col-md-8 text-center text-md-start">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start gap-2 mb-2">
+              <span class="badge text-dark fw-bold px-3 py-2 rounded-5" id="hero-category-badge"
+                style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase; background-color: #ffd140 !important;">
+                <i class="fas fa-users me-1"></i> Peer Reviewed Journal
+              </span>
+              <span class="badge text-white fw-bold px-3 py-2 rounded-5" id="hero-pub-model-badge"
+                style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase; background-color: #00adb5 !important;">
+                <i class="fas fa-unlock me-1"></i> Open Access
+              </span>
+            </div>
+            <h1 class="display-6 fw-bold mb-2" id="hero-journal-title"
+              style="font-family: Outfit, sans-serif; text-shadow: 0 2px 10px rgba(0,0,0,0.3); font-size: 2.1rem; line-height: 1.25;">
+              Loading Journal Title...
+            </h1>
+            <p class="fs-6 opacity-90 mb-2 fw-semibold" id="hero-journal-tagline"
+              style="font-family: Outfit, sans-serif; font-style: italic; color: rgba(255,255,255,0.85); font-size: 1.15rem;">
+              Loading tagline...
+            </p>
+            <p class="fs-6 opacity-95 mb-4 fw-bold" id="hero-journal-eic"
+              style="font-family: Outfit, sans-serif; color: #ffd140;">
+              Editor-in-Chief: Loading...
+            </p>
+
+            <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-3 mb-4">
+              <div
+                style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 10px 18px; font-size: 0.82rem; font-weight: 600;">
+                <i class="fas fa-brain me-2 text-warning"></i> Online ISSN: <span id="hero-issn-val">Waiting For Approved</span>
+              </div>
+              <div
+                style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 10px 18px; font-size: 0.82rem; font-weight: 600;">
+                <i class="fas fa-calendar-alt me-2 text-warning"></i> Frequency: <span id="hero-freq-val">12 Issue per Year</span>
+              </div>
+              <div
+                style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 10px 18px; font-size: 0.82rem; font-weight: 600;">
+                <i id="hero-indexing-icon" class="fas fa-graduation-cap me-2 text-warning"></i> <span id="hero-indexing-val">Scopus Indexed</span>
+              </div>
+            </div>
+
+            <div>
+              <a href="#guidelines-authors" id="hero-submit-btn"
+                class="btn btn-warning fw-bold text-dark px-4 py-2.5 rounded-5 shadow-sm"
+                style="font-size: 0.88rem; transition: all 0.3s; padding: 12px 28px; background-color: #ffd140; border-color: #ffd140;" onmouseover="this.style.transform='translateY(-2px)';"
+                onmouseout="this.style.transform='translateY(0)';"
+                onclick="setTimeout(() => { document.querySelector('[data-tab=&quot;paper-submission&quot;]').click(); }, 100);">
+                <i class="fas fa-paper-plane me-2"></i>Submit your manuscripts
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Body Grid -->
+      <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <div class="col-lg-3">
+          <div class="sidebar-card">
+            <div class="sidebar-title">
+              <i class="fas fa-book-open text-primary"></i>
+              <span id="sidebar-journal-code">JOURNAL</span>
+            </div>
+            <ul class="sidebar-menu">
+              <li class="sidebar-item active" data-tab="aim-scope">
+                <a href="#aim-scope">
+                  <i class="fas fa-bullseye"></i> Aim & Scope
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="editorial-board">
+                <a href="#editorial-board">
+                  <i class="fas fa-users-cog"></i> Editorial Board
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="paper-submission">
+                <a href="#paper-submission">
+                  <i class="fas fa-file-upload"></i> Paper Submission
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="indexing">
+                <a href="#indexing">
+                  <i class="fas fa-award"></i> Indexing & Abstracting
+                </a>
+              </li>
+              <li class="sidebar-item d-none" data-tab="apc">
+                <a href="#apc">
+                  <i class="fas fa-credit-card"></i> Publication Fees (APC)
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="current-issue">
+                <a href="#current-issue">
+                  <i class="fas fa-newspaper"></i> Current Issue
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="archives">
+                <a href="#archives">
+                  <i class="fas fa-archive"></i> Archives
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="guidelines-authors">
+                <a href="#guidelines-authors">
+                  <i class="fas fa-pen-fancy"></i> Guide for Authors
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="guidelines-editors">
+                <a href="#guidelines-editors">
+                  <i class="fas fa-user-edit"></i> Guide for Editors
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="guidelines-reviewer">
+                <a href="#guidelines-reviewer">
+                  <i class="fas fa-user-check"></i> Guide for Reviewers
+                </a>
+              </li>
+              <li class="sidebar-item d-none" data-tab="apc-payment">
+                <a href="#apc-payment">
+                  <i class="fas fa-money-check-alt"></i> Mode of Payment / Contact
+                </a>
+              </li>
+
+              <!-- Policies Section -->
+              <li class="sidebar-title mt-3 pt-2 border-top" style="font-size: 0.78rem; font-weight: 700; color: #777;">
+                <i class="fas fa-shield-alt me-1"></i> Policies
+              </li>
+              <li class="sidebar-item" data-tab="privacy-statement">
+                <a href="#privacy-statement">
+                  <i class="fas fa-user-shield"></i> Privacy Statement
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="open-access">
+                <a href="#open-access">
+                  <i class="fas fa-lock-open"></i> Open Access Policy
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="conflicts-interest">
+                <a href="#conflicts-interest">
+                  <i class="fas fa-handshake-slash"></i> Conflicts of Interest
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="corrections-retraction">
+                <a href="#corrections-retraction">
+                  <i class="fas fa-tools"></i> Corrections & Retraction
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="plagiarism-policy">
+                <a href="#plagiarism-policy">
+                  <i class="fas fa-copy"></i> Plagiarism Policy
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="misconduct-sanctions">
+                <a href="#misconduct-sanctions">
+                  <i class="fas fa-exclamation-triangle"></i> Misconduct & Sanctions
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="publication-ethics">
+                <a href="#publication-ethics">
+                  <i class="fas fa-balance-scale"></i> Publication Ethics
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="digital-preservation">
+                <a href="#digital-preservation">
+                  <i class="fas fa-server"></i> Digital Preservation
+                </a>
+              </li>
+              <li class="sidebar-item" data-tab="announcements">
+                <a href="#announcements">
+                  <i class="fas fa-bullhorn"></i> Announcements
+                </a>
+              </li>
+
+              <li class="sidebar-item border-top mt-2 pt-2">
+                <a href="#" id="sidebar-copyright-btn" download>
+                  <i class="fas fa-file-signature"></i> Copyright template
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="#" id="sidebar-paper-btn" download>
+                  <i class="fas fa-file-word"></i> Paper template
+                </a>
+              </li>
+              <li class="mt-3 pt-2 border-top">
+                <a href="journals.html" class="text-danger fw-bold d-flex align-items-center gap-2">
+                  <i class="fas fa-arrow-left"></i> Back to Catalog
+                </a>
+              </li>
+            </ul>
+
+            <!-- Journal Details Metadata Block -->
+            <div class="mt-4 pt-3 border-top" id="sidebar-info-block"
+              style="font-size: 0.76rem; line-height: 1.5; color: #555; font-family: 'Poppins', sans-serif;">
+              <h6 class="fw-bold mb-2 text-dark"
+                style="font-family:'Outfit',sans-serif; font-size: 0.8rem; letter-spacing: 0.5px; border-bottom: 1px solid rgba(77, 30, 163, 0.08); padding-bottom: 5px;">
+                <i class="fas fa-info-circle text-primary me-1"></i> Journal Info
+              </h6>
+              <div class="mb-1"><strong>Publisher:</strong> <span id="info-publisher">N/A</span></div>
+              <div class="mb-1"><strong>Country:</strong> <span id="info-country">N/A</span></div>
+              <div class="mb-1"><strong>Language:</strong> <span id="info-language">N/A</span></div>
+              <div class="mb-1"><strong>First Year:</strong> <span id="info-first-year">N/A</span></div>
+              <div class="mb-1"><strong>Access:</strong> <span id="info-access">N/A</span></div>
+              <div class="mb-1"><strong>Format:</strong> <span id="info-format">N/A</span></div>
+              <div class="mb-1"><strong>Responsible:</strong> <span id="info-responsible">N/A</span></div>
+              <div class="mb-1"><strong>Email:</strong> <span id="info-email">N/A</span></div>
+              <div class="mb-1"><strong>Mobile:</strong> <span id="info-mobile">N/A</span></div>
+              <div class="mb-0" style="word-break: break-word;"><strong>Address:</strong> <span
+                  id="info-address">N/A</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Panes -->
+        <div class="col-lg-6">
+
+          <!-- 1. AIM & SCOPE -->
+          <div class="content-card active" id="tab-aim-scope">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-bullseye text-primary"></i> Aim & Scope
+            </h3>
+
+            <!-- Expanded 8-Card Insights Grid -->
+            <div class="insights-grid-8 mb-5" id="journal-metrics-row">
+              <!-- Injected via JS -->
+            </div>
+
+            <!-- Scope Description -->
+            <div class="mb-5">
+              <h5 class="fw-bold mb-3 text-secondary" style="font-family:'Outfit',sans-serif;">Journal Overview</h5>
+              <div id="journal-scope-description" class="lh-lg" style="color: #444; font-size: 0.95rem;">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+
+            <!-- Solicited Topics Grid -->
+            <div class="mb-5">
+              <h5 class="fw-bold mb-3 text-secondary" style="font-family:'Outfit',sans-serif;">Solicited Topics & Scope
+                Area</h5>
+              <p class="text-muted small mb-4">The journal welcomes original research submissions covering, but not
+                limited to, the following domains:</p>
+              <div class="row" id="journal-topics-list">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+
+            <!-- Current Issue papers preview (bottom of Scope) -->
+            <div class="mt-5 pt-4 border-top animate__animated animate__fadeIn" id="aim-scope-papers-preview"
+              style="animation-delay: 0.2s;">
+              <h5 class="fw-bold mb-4 text-secondary" style="font-family:'Outfit',sans-serif;"><i
+                  class="fas fa-newspaper text-primary me-2"></i>Current Issue Articles</h5>
+              <div class="d-flex flex-column gap-3" id="scope-issue-papers-list">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. EDITORIAL BOARD -->
+          <div class="content-card" id="tab-editorial-board">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-users-cog text-primary"></i> Editorial Board
+            </h3>
+
+            <!-- Editor-in-Chief highlighted -->
+            <div class="eic-card">
+              <span class="eic-badge">Editor-in-Chief</span>
+              <div class="eic-avatar-wrap">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <div>
+                <h4 class="fw-bold mb-2 text-primary" style="font-family:'Outfit',sans-serif;" id="eic-name">Dr. Editor
+                  Name</h4>
+                <p class="mb-0 text-muted lh-base" style="font-size: 0.92rem;" id="eic-affiliation">Affiliation Details
+                </p>
+              </div>
+            </div>
+
+            <!-- Other Board Members List -->
+            <div>
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                <h5 class="fw-bold m-0 text-secondary" style="font-family:'Outfit',sans-serif;">Associate Editors &
+                  Editorial Members</h5>
+                <span class="badge bg-secondary px-3 py-2 rounded-5 fw-bold" style="font-size: 0.72rem;"
+                  id="editors-count-badge">0 Members</span>
+              </div>
+
+              <!-- Editors Search -->
+              <div class="editors-search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="editors-search-input"
+                  placeholder="Search editors by name, institution or country..." />
+              </div>
+
+              <div class="board-grid" id="editors-grid-container">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. PAPER SUBMISSION -->
+          <div class="content-card" id="tab-paper-submission">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-file-upload text-primary"></i> Guidelines for Paper Submission
+            </h3>
+
+            <!-- submission instructions email callout -->
+            <div
+              class="submission-box d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
+              <div>
+                <h5 class="fw-bold mb-2 text-warning"><i class="fas fa-paper-plane me-2"></i>Submit Your Paper</h5>
+                <p class="mb-0 opacity-90 small lh-base" style="max-width: 500px;">
+                  Send your manuscript as a Microsoft Word attachment (.doc or .docx) directly to the submission mail
+                  box. Please ensure you add this address to your contacts to ensure smooth communication.
+                </p>
+              </div>
+              <div class="text-md-end flex-shrink-0">
+                <div class="fw-bold fs-5 mb-2" id="submission-email-text">email@address.org</div>
+                <div class="d-flex gap-2 justify-content-md-end">
+                  <button class="btn btn-warning fw-bold px-3 py-2 rounded-5 text-dark" id="btn-submit-mail"
+                    style="font-size:0.85rem;">
+                    <i class="fas fa-envelope me-1"></i> Send Email
+                  </button>
+                  <button class="btn btn-copy" onclick="copySubmissionEmail()">
+                    <i class="fas fa-copy me-1"></i> Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Preparation Guidelines -->
+            <div class="mb-5">
+              <h5 class="fw-bold mb-3 text-secondary" style="font-family:'Outfit',sans-serif;">Manuscript Preparation
+                Guidelines</h5>
+              <div class="bg-light p-4 rounded-4" id="preparation-guidelines-list">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+
+            <!-- Submission Templates -->
+            <div>
+              <h5 class="fw-bold mb-3 text-secondary" style="font-family:'Outfit',sans-serif;">Templates & Agreement
+                Forms</h5>
+              <p class="text-muted small mb-4">Please download the required manuscript format and copyright agreement.
+                These forms must be completed and submitted along with your paper.</p>
+
+              <div class="download-card">
+                <div class="d-flex align-items-center gap-3">
+                  <div
+                    style="background: rgba(77, 30, 163, 0.08); width:45px; height:45px; border-radius:10px; display:flex; align-items:center; justify-content:center; color: var(--main-color);">
+                    <i class="far fa-file-word fs-4"></i>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold mb-1" style="font-size: 0.92rem;">Paper Submission Template</h6>
+                    <small class="text-muted">Document guidelines and formatting layout (.doc)</small>
+                  </div>
+                </div>
+                <a href="#" id="template-paper-btn" class="btn btn-purple py-2 px-4 rounded-5"
+                  style="font-size:0.82rem;" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+              </div>
+
+              <div class="download-card">
+                <div class="d-flex align-items-center gap-3">
+                  <div
+                    style="background: rgba(77, 30, 163, 0.08); width:45px; height:45px; border-radius:10px; display:flex; align-items:center; justify-content:center; color: var(--main-color);">
+                    <i class="far fa-file-word fs-4"></i>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold mb-1" style="font-size: 0.92rem;">Copyright Form template</h6>
+                    <small class="text-muted">Author declaration and copyright assignment agreement (.docx)</small>
+                  </div>
+                </div>
+                <a href="#" id="template-copyright-btn" class="btn btn-purple py-2 px-4 rounded-5"
+                  style="font-size:0.82rem;" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. INDEXING -->
+          <div class="content-card" id="tab-indexing">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-award text-primary"></i> Indexing & Abstracting
+            </h3>
+            <p class="text-muted">This journal is recognized, indexed, and cataloged by the following major
+              international scientific indexing databases, ensuring widespread visibility and global academic impact:
+            </p>
+
+            <div class="badge-grid" id="indexing-badges-container">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 5. APC -->
+          <div class="content-card" id="tab-apc">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-credit-card text-primary"></i> Article Processing Charges (APC)
+            </h3>
+
+            <p class="lh-lg mb-4" style="color: #444; font-size:0.95rem;">
+              SSSL International Journals operate under an Open Access model. To provide free, immediate, and permanent
+              access to all articles worldwide, the journal levies an Article Processing Charge (APC) once a manuscript
+              is accepted after peer review. This fee covers typesetting, editing, online hosting, archiving, and
+              indexing administration.
+            </p>
+
+            <div class="table-responsive mb-4">
+              <table class="table table-bordered table-striped align-middle" style="font-size:0.9rem;">
+                <thead class="table-primary text-white" style="background-color: var(--main-color);">
+                  <tr>
+                    <th class="py-3 px-4" style="background-color: var(--main-color);">Publication Fee Categories</th>
+                    <th class="py-3 px-4 text-center" style="background-color: var(--main-color); width: 220px;">Amount
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-3 px-4 fw-semibold text-secondary">International Authors (Standard Open Access)</td>
+                    <td class="py-3 px-4 text-center fw-bold text-primary" id="apc-international-val">$120 USD</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 fw-semibold text-secondary">Indian Authors (Standard Open Access)</td>
+                    <td class="py-3 px-4 text-center fw-bold text-primary">₹3000 INR</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 fw-semibold text-secondary">Copy / Paper Submission Templates</td>
+                    <td class="py-3 px-4 text-center text-success fw-bold">Free of Charge</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="alert alert-info rounded-4 p-4 border-0" style="background-color: #f0f3ff; color: #3b5998;">
+              <h6 class="fw-bold mb-2"><i class="fas fa-info-circle me-1"></i> Payment Instruction Notes</h6>
+              <p class="mb-0 small lh-base">
+                Payment instructions, bank accounts, and online billing transfer links will be provided directly by the
+                editorial board members in the official acceptance notification email. Once a paper has been accepted
+                after peer review, withdrawals are strictly prohibited under publication regulations.
+              </p>
+            </div>
+          </div>
+
+          <!-- 6. CURRENT ISSUE -->
+          <div class="content-card" id="tab-current-issue">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-newspaper text-primary"></i> Current Issue
+            </h3>
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+              <h5 class="fw-bold m-0 text-secondary" id="current-issue-volume-title"
+                style="font-family:'Outfit',sans-serif;">Volume 13 Issue 5 (2026)</h5>
+              <span class="badge bg-purple px-3 py-2 rounded-5 fw-bold text-white" id="current-issue-month-badge">May
+                2026</span>
+            </div>
+            <div class="d-flex flex-column gap-3" id="current-issue-papers-list">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 7. ARCHIVES -->
+          <div class="content-card" id="tab-archives">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-archive text-primary"></i> Archives
+            </h3>
+            <p class="text-muted mb-4">Explore the complete history of published research volumes and issues. Click on
+              any issue to expand and inspect the catalog.</p>
+            <div class="accordion" id="archivesAccordion">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 8. PUBLICATION ETHICS -->
+          <div class="content-card" id="tab-publication-ethics">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-balance-scale text-primary"></i> Publication Ethics
+            </h3>
+            <p class="text-muted mb-4" id="publication-ethics-intro">Ethical standards exist to ensure high-quality
+              scientific publications, public
+              trust, and appropriate credit. The journal adheres strictly to COPE Best Practice Guidelines.</p>
+            <div class="accordion" id="ethicsAccordion">
+              <!-- Injected via JS -->
+            </div>
+            <div id="publication-ethics-content" class="lh-lg text-justify"
+              style="color: #444; font-size: 0.95rem; display: none;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 9. GUIDELINES FOR AUTHORS -->
+          <div class="content-card" id="tab-guidelines-authors">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-pen-fancy text-primary"></i> Guidelines for Authors
+            </h3>
+            <p class="text-muted mb-4">Step-by-step instruction manual for author submissions, manuscript layout rules,
+              formatting, references styles and figure specifications.</p>
+            <div class="accordion" id="authorsGuidelinesAccordion">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 10. GUIDELINES FOR EDITORS -->
+          <div class="content-card" id="tab-guidelines-editors">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-user-edit text-primary"></i> Guidelines for Editors
+            </h3>
+            <p class="text-muted mb-4">The core 11-step editorial office workflow outlining paper review assignments,
+              EIC evaluations, and AI confidentiality guidelines.</p>
+            <div class="editorial-timeline" id="editorsWorkflowTimeline">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 11. GUIDELINES FOR REVIEWER -->
+          <div class="content-card" id="tab-guidelines-reviewer">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-user-check text-primary"></i> Guidelines for Reviewer
+            </h3>
+            <p class="text-muted mb-4">Detailed technical guide for invited peer-reviewers. Learn how to skim-read, spot
+              major flaws, write section reviews, and format final recommendations.</p>
+            <div class="accordion" id="reviewersGuidelinesAccordion">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 12. MODE OF PAYMENT FOR APC -->
+          <div class="content-card" id="tab-apc-payment">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-money-check-alt text-primary"></i> Mode of payment for APC
+            </h3>
+            <p class="text-muted mb-4">Select the appropriate billing channel below to complete your Article Processing
+              Charge (APC). Transaction reference receipts must be emailed to the editorial office.</p>
+
+            <div class="payment-tabs-container mb-4">
+              <ul class="nav nav-pills nav-fill bg-light p-1 rounded-4" role="tablist">
+                <li class="nav-item">
+                  <button class="nav-link active rounded-3 py-2 fw-bold text-dark" id="pay-indian-tab"
+                    data-bs-toggle="tab" data-bs-target="#pay-indian-pane" type="button" role="tab">Indian Authors
+                    (INR)</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link rounded-3 py-2 fw-bold text-dark" id="pay-intl-tab" data-bs-toggle="tab"
+                    data-bs-target="#pay-intl-pane" type="button" role="tab">International Authors (USD)</button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tab-content">
+              <!-- Indian Authors -->
+              <div class="tab-pane fade show active" id="pay-indian-pane" role="tabpanel">
+                <div class="p-4 bg-light rounded-4 border-0">
+                  <h5 class="fw-bold mb-3 text-secondary" style="font-family:'Outfit',sans-serif;"><i
+                      class="fas fa-university me-2 text-primary"></i> Bank Wire & Online Portals</h5>
+                  <p class="small text-muted lh-lg mb-4">
+                    Indian authors can transfer charges via bank accounts (details provided in acceptance mail), Net
+                    Banking, or State Bank Collect.
+                  </p>
+                  <ul class="d-flex flex-column gap-3 mb-4 text-muted small lh-base"
+                    style="list-style: none; padding: 0;">
+                    <li class="d-flex gap-2 align-items-start"><i class="fas fa-check-circle text-primary mt-1"></i>
+                      <span>Direct bank transfer (NEFT/IMPS/RTGS) to the account specified in your official acceptance
+                        email.</span>
+                    </li>
+                    <li class="d-flex gap-2 align-items-start"><i class="fas fa-check-circle text-primary mt-1"></i>
+                      <span>UPI transfer using the scanned QR code or VPA details included in the billing
+                        notification.</span>
+                    </li>
+                    <li class="d-flex gap-2 align-items-start"><i class="fas fa-check-circle text-primary mt-1"></i>
+                      <span>Online State Bank Collect portal using Net Banking, Debit cards, or Credit cards.</span>
+                    </li>
+                  </ul>
+                  <div class="d-grid mt-4">
+                    <a href="https://internationaljournalssrg.org/IJCSE/sbi-i-collect.html" id="sbi-collect-btn"
+                      target="_blank" class="btn btn-purple py-3 rounded-5 fw-bold fs-6">
+                      <i class="fas fa-external-link-alt me-2"></i> Pay via State Bank Collect Portal
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- International Authors -->
+              <div class="tab-pane fade" id="pay-intl-pane" role="tabpanel">
+                <div class="p-4 bg-light rounded-4 border-0">
+                  <h5 class="fw-bold mb-3 text-secondary" style="font-family:'Outfit',sans-serif;"><i
+                      class="fab fa-paypal me-2 text-primary"></i> PayPal & Money Transceivers</h5>
+                  <p class="small text-muted lh-lg mb-4">
+                    International authors can complete billing via PayPal secure transfer, Western Union, MoneyGram, or
+                    international Swift wire transfers.
+                  </p>
+                  <ul class="d-flex flex-column gap-2 mb-4 text-muted small lh-base"
+                    style="list-style: none; padding: 0;">
+                    <li class="d-flex gap-2 align-items-start"><i class="fas fa-check-circle text-primary mt-1"></i>
+                      <span>Swift/IBAN wire transfer to our international account (details supplied in acceptance
+                        mail).</span>
+                    </li>
+                    <li class="d-flex gap-2 align-items-start"><i class="fas fa-check-circle text-primary mt-1"></i>
+                      <span>MoneyGram or Western Union transfers (please contact editorial desk for details).</span>
+                    </li>
+                    <li class="d-flex gap-2 align-items-start"><i class="fas fa-check-circle text-primary mt-1"></i>
+                      <span>PayPal secure invoice portal below:</span>
+                    </li>
+                  </ul>
+
+                  <!-- PayPal Widget -->
+                  <div class="bg-white p-4 rounded-4 border"
+                    style="max-width: 420px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+                    <h6 class="fw-bold mb-3 text-dark text-center"><i class="fab fa-paypal text-primary me-2"></i>PayPal
+                      Checkout</h6>
+                    <div class="mb-3">
+                      <label for="paypal-article-id" class="form-label small fw-semibold text-secondary">Article
+                        ID</label>
+                      <input type="text" id="paypal-article-id" class="form-control form-control-sm rounded-3"
+                        placeholder="e.g. IJCSE-V13I5P101" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="paypal-apc-amount" class="form-label small fw-semibold text-secondary">APC Amount
+                        (USD)</label>
+                      <div class="input-group input-group-sm">
+                        <span class="input-group-text">$</span>
+                        <input type="number" id="paypal-apc-amount" class="form-control rounded-end-3" placeholder="120"
+                          value="120" readonly>
+                        <span class="input-group-text">USD</span>
+                      </div>
+                    </div>
+                    <div class="d-grid mt-4">
+                      <button type="button" class="btn btn-warning rounded-5 fw-bold text-dark py-2 border-0 shadow-sm"
+                        id="paypal-sim-checkout-btn"
+                        style="background-color: #ffd140; font-family: 'Outfit', sans-serif;">
+                        <i class="fab fa-paypal me-2"></i>Pay with PayPal
+                      </button>
+                    </div>
+                    <div id="paypal-sim-success-msg"
+                      class="alert alert-success mt-3 p-2 rounded-3 text-center small fw-bold" style="display: none;">
+                      <i class="fas fa-check-circle me-1"></i> Simulation Success! Payment processed.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 13. PRIVACY STATEMENT -->
+          <div class="content-card" id="tab-privacy-statement">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-user-shield text-primary"></i> Privacy Statement
+            </h3>
+            <div id="privacy-statement-content" class="lh-lg text-justify" style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 14. OPEN ACCESS POLICY -->
+          <div class="content-card" id="tab-open-access">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-lock-open text-primary"></i> Open Access Policy, Licensing and Copyright
+            </h3>
+            <div id="open-access-content" class="lh-lg text-justify" style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 15. CONFLICTS OF INTEREST -->
+          <div class="content-card" id="tab-conflicts-interest">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-handshake-slash text-primary"></i> Conflicts of Interest
+            </h3>
+            <div id="conflicts-interest-content" class="lh-lg text-justify" style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 16. CORRECTIONS & RETRACTION -->
+          <div class="content-card" id="tab-corrections-retraction">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-tools text-primary"></i> Corrections and Retraction
+            </h3>
+            <div id="corrections-retraction-content" class="lh-lg text-justify"
+              style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 17. PLAGIARISM POLICY -->
+          <div class="content-card" id="tab-plagiarism-policy">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-copy text-primary"></i> Plagiarism Policy
+            </h3>
+            <div id="plagiarism-policy-content" class="lh-lg text-justify" style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 18. MISCONDUCT & SANCTIONS -->
+          <div class="content-card" id="tab-misconduct-sanctions">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-exclamation-triangle text-primary"></i> Misconduct and Sanctions
+            </h3>
+            <div id="misconduct-sanctions-content" class="lh-lg text-justify" style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 19. DIGITAL PRESERVATION -->
+          <div class="content-card" id="tab-digital-preservation">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-server text-primary"></i> Digital Preservation
+            </h3>
+            <div id="digital-preservation-content" class="lh-lg text-justify" style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 20. ANNOUNCEMENTS -->
+          <div class="content-card" id="tab-announcements">
+            <h3 class="section-heading-inner">
+              <i class="fas fa-bullhorn text-primary"></i> Announcements
+            </h3>
+            <div id="announcements-content" class="lh-lg text-justify" style="color: #444; font-size: 0.95rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Widgets Sidebar (New) -->
+        <div class="col-lg-3 animate__animated animate__fadeIn" id="right-widgets-sidebar"
+          style="animation-delay: 0.1s;">
+          <!-- 1. Call for Papers Widget -->
+          <div class="pkp_block block_custom mb-4" id="customblock-call-for-paper">
+            <div class="sidebar-widget-card p-4 rounded-4 shadow-sm border bg-white"
+              style="border: 1px solid rgba(77, 30, 163, 0.08) !important;">
+              <h5 class="fw-bold mb-3 text-secondary sidebar-widget-title d-flex align-items-center gap-2"
+                style="font-family:'Outfit',sans-serif; font-size: 0.95rem; color: #1a1a2e !important;">
+                <i class="fas fa-file-signature text-primary"></i> Call for Papers
+              </h5>
+              <div class="cfp-card-body">
+                <div class="text-center mb-3 rounded-3 overflow-hidden bg-light border"
+                  style="height: 140px; display: flex; align-items: center; justify-content: center; position: relative;">
+                  <div id="sidebar-cfp-banner" class="w-100 h-100"
+                    style="background-size: cover; background-position: center; opacity: 0.9; display: none;"></div>
+                  <div id="sidebar-cfp-fallback"
+                    class="position-absolute inset-0 d-none flex-column align-items-center justify-content-center text-white p-2"
+                    style="background: linear-gradient(135deg, var(--main-color), #7645fc);">
+                    <i class="fas fa-book-open fs-2 mb-2"></i>
+                    <span id="sidebar-cfp-code" class="fw-bold tracking-wide" style="font-size:0.9rem;">JOURNAL</span>
+                  </div>
+                </div>
+                <p class="issue-details mb-2" style="font-size: 0.82rem; font-weight: 700; color: #1a1a2e;">
+                  Vol <span id="cfp-vol-val">13</span>, Issue <span id="cfp-issue-val">5</span> — <strong
+                    id="cfp-date-val">December 2026</strong>
+                </p>
+                <hr class="my-2 opacity-10">
+                <p class="description text-muted mb-0" style="font-size: 0.78rem; line-height: 1.6;">
+                  Join our upcoming issue on "<span id="cfp-journal-title">Journal Title</span>". We invite researchers
+                  to submit their latest scientific findings.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Metrics Table Widget -->
+          <div class="pkp_block block_custom mb-4" id="customblock-metrics">
+            <div class="sidebar-widget-card p-4 rounded-4 shadow-sm border bg-white"
+              style="border: 1px solid rgba(77, 30, 163, 0.08) !important;">
+              <h5 class="fw-bold mb-3 text-secondary sidebar-widget-title d-flex align-items-center gap-2"
+                style="font-family:'Outfit',sans-serif; font-size: 0.95rem; color: #1a1a2e !important;">
+                <i class="fas fa-chart-line text-primary"></i> Journal Metrics
+              </h5>
+              <p class="text-muted small mb-3" style="font-size:0.75rem;">Metrics for Publication</p>
+              <div class="table-responsive"
+                style="box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-radius: 6px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06);">
+                <table class="table table-bordered table-sm text-center align-middle mb-0" style="font-size: 0.72rem;">
+                  <thead>
+                    <tr style="background: #eef2ff; font-weight: 700; color: var(--main-color);">
+                      <th class="py-2">Year</th>
+                      <th class="py-2">Received</th>
+                      <th class="py-2">Published</th>
+                      <th class="py-2">Acceptance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="py-2 fw-semibold">2025</td>
+                      <td class="py-2" id="metrics-rec-2025">35</td>
+                      <td class="py-2" id="metrics-pub-2025">12</td>
+                      <td class="py-2 fw-bold text-success" id="metrics-rate-2025">34%</td>
+                    </tr>
+                    <tr class="table-light">
+                      <td class="py-2 fw-semibold">2026</td>
+                      <td class="py-2" id="metrics-rec-2026">10</td>
+                      <td class="py-2" id="metrics-pub-2026" colspan="2"
+                        style="font-size:0.68rem; color:#777; font-style:italic;">Ongoing Issue</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Gender Diversity Widget -->
+          <div class="pkp_block block_custom mb-4" id="customblock-diversity">
+            <div class="sidebar-widget-card p-4 rounded-4 shadow-sm border bg-white"
+              style="border: 1px solid rgba(77, 30, 163, 0.08) !important;">
+              <h5 class="fw-bold mb-3 text-secondary sidebar-widget-title d-flex align-items-center gap-2"
+                style="font-family:'Outfit',sans-serif; font-size: 0.95rem; color: #1a1a2e !important;">
+                <i class="fas fa-users text-primary"></i> Gender Diversity
+              </h5>
+              <p class="text-muted small mb-3" style="font-size:0.75rem;">Gender Diversity of Editorial Team</p>
+
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div style="width: 60px; height: 60px; flex-shrink: 0; position: relative;">
+                  <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
+                    <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#e9ecef" stroke-width="6"></circle>
+                    <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--main-color)" stroke-width="6"
+                      stroke-dasharray="87.5 12.5" stroke-dashoffset="25"></circle>
+                  </svg>
+                  <div
+                    class="position-absolute inset-0 d-flex align-items-center justify-content-center fw-bold text-primary"
+                    style="font-size: 0.72rem; font-family:'Outfit';">88%</div>
+                </div>
+                <div style="font-size: 0.75rem;" class="lh-sm">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span
+                      style="display:inline-block; width:6px; height:6px; background:var(--main-color); border-radius:50%;"></span>
+                    <span>Men: <strong id="diversity-men-count">7</strong> (<span
+                        id="diversity-men-pct">87.5%</span>)</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span
+                      style="display:inline-block; width:6px; height:6px; background:#e9ecef; border-radius:50%;"></span>
+                    <span>Women: <strong id="diversity-women-count">1</strong> (<span
+                        id="diversity-women-pct">12.5%</span>)</span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-muted small mb-0 lh-sm" style="font-size:0.68rem; font-style:italic;">
+                We value inclusion in our international editorial panels.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/journal-data.js"></script>
+  <script src="js/global-guidelines.js"></script>
+
+  <script>
+    // Basic markdown helper for policy rendering
+    function renderMarkdown(mdText) {
+      if (!mdText) return "";
+      let html = mdText;
+      // Replace horizontal rules
+      html = html.replace(/^\*\*\*+/gm, '<hr class="my-3 opacity-20">');
+      html = html.replace(/^---+/gm, '<hr class="my-3 opacity-20">');
+      // Replace headings
+      html = html.replace(/^### (.*$)/gim, '<h5 class="fw-bold text-secondary mt-4 mb-3" style="font-family:\'Outfit\',sans-serif;">$1</h5>');
+      html = html.replace(/^## (.*$)/gim, '<h4 class="fw-bold text-primary mt-4 mb-3" style="font-family:\'Outfit\',sans-serif;">$1</h4>');
+      html = html.replace(/^# (.*$)/gim, '<h3 class="fw-bold text-primary mt-4 mb-3" style="font-family:\'Outfit\',sans-serif;">$1</h3>');
+      // Replace bold text
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      // Replace links
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-primary fw-medium">$1</a>');
+      // Replace list items starting with '* '
+      html = html.replace(/^\* (.*$)/gim, '<li class="mb-2"><i class="fas fa-check-circle text-primary me-2" style="font-size: 0.8rem;"></i> $1</li>');
+      // Replace numbered list items starting with '1. '
+      html = html.replace(/^(\d+)\. (.*$)/gim, '<div class="d-flex align-items-start gap-2 mb-2"><span class="badge bg-purple text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 20px; height: 20px; font-size: 0.7rem; flex-shrink:0; margin-top:3px;">$1</span><span>$2</span></div>');
+
+      // Split by double/multiple newlines to form paragraphs
+      const paragraphs = html.split(/\n\n+/);
+      const formattedParagraphs = paragraphs.map(p => {
+        if (p.trim().startsWith('<li') || p.trim().startsWith('<div class="d-flex') || p.trim().startsWith('<h') || p.trim().startsWith('<hr')) {
+          return p;
+        }
+        return `<p class="mb-3 text-justify">${p.replace(/\n/g, '<br>')}</p>`;
+      });
+      return formattedParagraphs.join('');
+    }
+
+    // Helper to activate a tab from the header menu
+    function setActiveTab(tabId) {
+      const tabTrigger = document.querySelector(`.sidebar-item[data-tab="${tabId}"]`);
+      if (tabTrigger) {
+        tabTrigger.click();
+      }
+    }
+
+    // Global journal object
+    let currentJournal = null;
+
+    // Dynamic content-oriented SVG generator for each journal (completely local & offline-friendly)
+    function getJournalSvg(code) {
+      const colors = {
+        primary: "#ffd140",   // Gold
+        secondary: "#00adb5", // Cyan
+        accent: "#7645fc"     // Purple
+      };
+      
+      let paths = "";
+      
+      switch(code) {
+        case "IJCSE":
+          // Laptop with glowing brain
+          paths = `
+            <!-- Laptop body -->
+            <rect x="25" y="45" width="50" height="30" rx="3" fill="none" stroke="${colors.secondary}" stroke-width="2"/>
+            <line x1="20" y1="75" x2="80" y2="75" stroke="${colors.secondary}" stroke-width="3" stroke-linecap="round"/>
+            <line x1="45" y1="75" x2="55" y2="75" stroke="${colors.primary}" stroke-width="1.5"/>
+            <!-- Holographic Brain -->
+            <path d="M50 22 C43 22 41 29 47 33 C43 36 45 42 50 42 C55 42 57 36 53 33 C59 29 57 22 50 22 Z" fill="none" stroke="${colors.primary}" stroke-width="1.5" stroke-dasharray="1 0.5"/>
+            <path d="M50 22 V42 M47 33 H53" stroke="${colors.primary}" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="50" cy="22" r="1" fill="${colors.primary}"/>
+            <circle cx="47" cy="33" r="1" fill="${colors.primary}"/>
+            <circle cx="53" cy="33" r="1" fill="${colors.primary}"/>
+            <circle cx="50" cy="42" r="1" fill="${colors.primary}"/>
+            <!-- Data beams -->
+            <line x1="38" y1="52" x2="38" y2="68" stroke="${colors.secondary}" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <line x1="62" y1="52" x2="62" y2="68" stroke="${colors.secondary}" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <line x1="50" y1="52" x2="50" y2="68" stroke="${colors.primary}" stroke-width="0.8" stroke-dasharray="2 2"/>
+          `;
+          break;
+        case "IJECE":
+          // Circuit board and signals (corresponds to circuit board photo in Attachment 2)
+          paths = `
+            <!-- Circuit background grid -->
+            <rect x="20" y="20" width="60" height="60" rx="5" fill="none" stroke="${colors.secondary}" stroke-width="1.8" stroke-dasharray="1 1"/>
+            <!-- Microchip in center -->
+            <rect x="38" y="38" width="24" height="24" rx="2" fill="none" stroke="${colors.primary}" stroke-width="2"/>
+            <!-- Pin lines -->
+            <path d="M33 42 h5 M33 46 h5 M33 50 h5 M33 54 h5 M33 58 h5 M62 42 h5 M62 46 h5 M62 50 h5 M62 54 h5 M62 58 h5" stroke="${colors.secondary}" stroke-width="1.2"/>
+            <path d="M42 33 v5 M46 33 v5 M50 33 v5 M54 33 v5 M58 33 v5 M42 62 v5 M46 62 v5 M50 62 v5 M54 62 v5 M58 62 v5" stroke="${colors.secondary}" stroke-width="1.2"/>
+            <!-- Microchip core lines -->
+            <circle cx="50" cy="50" r="5" fill="none" stroke="${colors.primary}" stroke-width="1"/>
+            <!-- Signal radiating from chip -->
+            <path d="M25 25 L35 35 M75 25 L65 35 M25 75 L35 65 M75 75 L65 65" stroke="${colors.secondary}" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="25" cy="25" r="2" fill="${colors.secondary}"/>
+            <circle cx="75" cy="25" r="2" fill="${colors.secondary}"/>
+            <circle cx="25" cy="75" r="2" fill="${colors.secondary}"/>
+            <circle cx="75" cy="75" r="2" fill="${colors.secondary}"/>
+          `;
+          break;
+        case "IJEEE":
+          // Lightbulb with electric lightning
+          paths = `
+            <!-- Lightbulb -->
+            <path d="M50 18 C35 18 32 35 40 46 L43 55 H57 L60 46 C68 35 65 18 50 18 Z" fill="none" stroke="${colors.secondary}" stroke-width="2"/>
+            <!-- Screw socket -->
+            <path d="M44 55 H56 M44 59 H56 M46 63 H54" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <!-- Lightning filament -->
+            <path d="M50 25 L45 35 H55 L50 47" fill="none" stroke="${colors.primary}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Electric current sparks -->
+            <path d="M22 22 L27 27 M13 42 H18 M87 42 H92 M78 22 L73 27" stroke="${colors.primary}" stroke-width="1.5" stroke-linecap="round"/>
+          `;
+          break;
+        case "IJCE":
+          // Suspension bridge and skyscraper structures
+          paths = `
+            <!-- Tower blocks -->
+            <rect x="22" y="25" width="10" height="55" fill="none" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <rect x="25" y="30" width="4" height="45" fill="none" stroke="${colors.secondary}" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <!-- Bridge main deck -->
+            <line x1="45" y1="62" x2="95" y2="62" stroke="${colors.primary}" stroke-width="2.5"/>
+            <!-- Bridge cable support tower -->
+            <path d="M68 25 L58 75 M78 25 L88 75" stroke="${colors.secondary}" stroke-width="2" stroke-linecap="round"/>
+            <line x1="68" y1="25" x2="78" y2="25" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <path d="M45 62 Q68 32 73 25 Q78 32 95 62" fill="none" stroke="${colors.primary}" stroke-width="1" stroke-linecap="round"/>
+            <!-- Vertical hangers -->
+            <line x1="55" y1="52" x2="55" y2="62" stroke="${colors.primary}" stroke-width="0.5"/>
+            <line x1="85" y1="52" x2="85" y2="62" stroke="${colors.primary}" stroke-width="0.5"/>
+          `;
+          break;
+        case "IJME":
+          // Mechanical gears
+          paths = `
+            <!-- Large Gear -->
+            <circle cx="40" cy="40" r="16" fill="none" stroke="${colors.secondary}" stroke-width="2.5"/>
+            <circle cx="40" cy="40" r="7" fill="none" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <path d="M40 20 v4 M40 56 v4 M20 40 h4 M56 40 h4 M26 26 l3 3 M54 54 l3 3 M26 54 l3-3 M54 26 l3-3" stroke="${colors.secondary}" stroke-width="3" stroke-linecap="round"/>
+            <!-- Small gear interlocking -->
+            <circle cx="66" cy="62" r="11" fill="none" stroke="${colors.primary}" stroke-width="2"/>
+            <circle cx="66" cy="62" r="4" fill="none" stroke="${colors.primary}" stroke-width="1"/>
+            <path d="M66 48 v3 M66 73 v3 M52 62 h3 M80 62 h3 M56 52 l2.5 2.5 M76 72 l2.5 2.5 M56 72 l2.5-2.5 M76 52 l2.5-2.5" stroke="${colors.primary}" stroke-width="2.5" stroke-linecap="round"/>
+          `;
+          break;
+        case "IJAES":
+          // Plant leaves with tech node overlay
+          paths = `
+            <!-- Leaf outline -->
+            <path d="M50 18 C32 30 32 65 50 82 C68 65 68 30 50 18 Z" fill="none" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <path d="M50 18 V82" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <!-- Tech connections -->
+            <path d="M50 35 L35 45 M50 35 L65 45 M50 55 L32 68 M50 55 L68 68" stroke="${colors.primary}" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="35" cy="45" r="1.5" fill="${colors.primary}"/>
+            <circle cx="65" cy="45" r="1.5" fill="${colors.primary}"/>
+            <circle cx="32" cy="68" r="1.5" fill="${colors.primary}"/>
+            <circle cx="68" cy="68" r="1.5" fill="${colors.primary}"/>
+          `;
+          break;
+        case "IJMS":
+          // Medical cross, DNA and ECG line
+          paths = `
+            <!-- DNA helix background -->
+            <path d="M22 30 Q32 10 42 30 T62 30" fill="none" stroke="${colors.secondary}" stroke-width="1" opacity="0.6"/>
+            <path d="M22 20 Q32 40 42 20 T62 20" fill="none" stroke="${colors.primary}" stroke-width="1" opacity="0.6"/>
+            <!-- Heartbeat wave -->
+            <path d="M20 62 H35 L40 48 L45 78 L50 58 L54 68 H80" fill="none" stroke="${colors.primary}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Medical cross in corner -->
+            <path d="M72 25 h8 v-8 h6 v8 h8 v6 h-8 v8 h-6 v-8 h-8 Z" fill="none" stroke="${colors.secondary}" stroke-width="1.5"/>
+          `;
+          break;
+        case "IJEMS":
+          // Management/Economics rising chart
+          paths = `
+            <!-- Globe lines -->
+            <circle cx="50" cy="50" r="32" fill="none" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
+            <!-- Bars -->
+            <rect x="32" y="55" width="8" height="20" fill="none" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <rect x="45" y="42" width="8" height="33" fill="none" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <rect x="58" y="28" width="8" height="47" fill="none" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <!-- Trend line -->
+            <path d="M28 62 L42 45 L54 33 L70 20" fill="none" stroke="${colors.primary}" stroke-width="2" stroke-linecap="round"/>
+            <!-- Arrow head -->
+            <path d="M62 20 H70 V28" fill="none" stroke="${colors.primary}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          `;
+          break;
+        case "IJAP":
+          // Physics atomic orbit rings
+          paths = `
+            <!-- Atomic nucleus -->
+            <circle cx="50" cy="50" r="5" fill="${colors.primary}"/>
+            <circle cx="48" cy="47" r="2.5" fill="${colors.secondary}"/>
+            <circle cx="53" cy="52" r="2.5" fill="${colors.secondary}"/>
+            <!-- Orbit rings -->
+            <ellipse cx="50" cy="50" rx="42" ry="14" transform="rotate(35 50 50)" fill="none" stroke="${colors.secondary}" stroke-width="1.2"/>
+            <ellipse cx="50" cy="50" rx="42" ry="14" transform="rotate(-35 50 50)" fill="none" stroke="${colors.secondary}" stroke-width="1.2"/>
+            <ellipse cx="50" cy="50" rx="42" ry="14" transform="rotate(90 50 50)" fill="none" stroke="${colors.secondary}" stroke-width="1.2"/>
+            <!-- Orbiting electrons -->
+            <circle cx="16" cy="32" r="2" fill="${colors.primary}"/>
+            <circle cx="84" cy="68" r="2" fill="${colors.primary}"/>
+            <circle cx="50" cy="8" r="2" fill="${colors.primary}"/>
+          `;
+          break;
+        case "IJHSS":
+          // Humanities opened book and globes
+          paths = `
+            <!-- Book -->
+            <path d="M50 72 C38 67 23 67 15 72 V32 C23 27 38 27 50 32 C62 27 77 27 85 32 V72 C77 67 62 67 50 72 Z" fill="none" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <line x1="50" y1="32" x2="50" y2="72" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <!-- Communication nodes above book -->
+            <circle cx="50" cy="20" r="2" fill="${colors.primary}"/>
+            <circle cx="38" cy="22" r="1.5" fill="${colors.primary}"/>
+            <circle cx="62" cy="22" r="1.5" fill="${colors.primary}"/>
+            <line x1="38" y1="22" x2="50" y2="20" stroke="${colors.primary}" stroke-width="0.8" stroke-dasharray="1 1"/>
+            <line x1="62" y1="22" x2="50" y2="20" stroke="${colors.primary}" stroke-width="0.8" stroke-dasharray="1 1"/>
+          `;
+          break;
+        case "IJAC":
+          // Chemistry molecules bonds
+          paths = `
+            <!-- Benzene ring -->
+            <polygon points="50,18 67,28 67,48 50,58 33,48 33,28" fill="none" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <polygon points="67,48 84,58 84,78 67,88 50,78 50,48" fill="none" stroke="${colors.primary}" stroke-width="1.2" opacity="0.8"/>
+            <!-- Double bonds -->
+            <line x1="49" y1="23" x2="63" y2="31" stroke="${colors.secondary}" stroke-width="1"/>
+            <line x1="63" y1="45" x2="50" y2="53" stroke="${colors.secondary}" stroke-width="1"/>
+            <line x1="37" y1="45" x2="37" y2="31" stroke="${colors.secondary}" stroke-width="1"/>
+            <!-- Atoms -->
+            <circle cx="50" cy="18" r="2.5" fill="${colors.primary}"/>
+            <circle cx="67" cy="88" r="2" fill="${colors.secondary}"/>
+            <circle cx="33" cy="48" r="2" fill="${colors.secondary}"/>
+          `;
+          break;
+        case "IJIP":
+          // Lightbulb with shining innovations
+          paths = `
+            <!-- Bulb -->
+            <path d="M50 18 C33 18 30 35 38 47 L42 56 H58 L62 47 C70 35 67 18 50 18 Z" fill="none" stroke="${colors.primary}" stroke-width="2"/>
+            <!-- Bulb base -->
+            <rect x="44" y="56" width="12" height="4" fill="none" stroke="${colors.primary}" stroke-width="1.5"/>
+            <rect x="46" y="60" width="8" height="4" fill="none" stroke="${colors.primary}" stroke-width="1.5"/>
+            <!-- Cog/Gear filament inside -->
+            <circle cx="50" cy="35" r="7" fill="none" stroke="${colors.secondary}" stroke-width="1.5"/>
+            <path d="M50 24 v4 M50 42 v4 M39 35 h4 M57 35 h4" stroke="${colors.secondary}" stroke-width="2" stroke-linecap="round"/>
+            <!-- Rays -->
+            <path d="M50 7 V12 M20 22 L24 26 M10 50 H15 M90 50 H95 M80 22 L76 26" stroke="${colors.primary}" stroke-width="1.2" stroke-linecap="round"/>
+          `;
+          break;
+        case "ML":
+        default:
+          // Neural networks connection mesh
+          paths = `
+            <!-- Network tracks -->
+            <line x1="30" y1="30" x2="50" y2="50" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <line x1="70" y1="30" x2="50" y2="50" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <line x1="30" y1="70" x2="50" y2="50" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <line x1="70" y1="70" x2="50" y2="50" stroke="${colors.secondary}" stroke-width="1.8"/>
+            <line x1="30" y1="30" x2="70" y2="30" stroke="${colors.primary}" stroke-width="0.8" stroke-dasharray="1 1"/>
+            <line x1="30" y1="70" x2="70" y2="70" stroke="${colors.primary}" stroke-width="0.8" stroke-dasharray="1 1"/>
+            <line x1="30" y1="30" x2="30" y2="70" stroke="${colors.primary}" stroke-width="0.8" stroke-dasharray="1 1"/>
+            <line x1="70" y1="30" x2="70" y2="70" stroke="${colors.primary}" stroke-width="0.8" stroke-dasharray="1 1"/>
+            <!-- Nodes -->
+            <circle cx="30" cy="30" r="3.5" fill="${colors.primary}"/>
+            <circle cx="70" cy="30" r="3.5" fill="${colors.primary}"/>
+            <circle cx="50" cy="50" r="4.5" fill="${colors.secondary}"/>
+            <circle cx="30" cy="70" r="3.5" fill="${colors.primary}"/>
+            <circle cx="70" cy="70" r="3.5" fill="${colors.primary}"/>
+            <!-- Orbiting data -->
+            <circle cx="50" cy="22" r="1.5" fill="${colors.secondary}"/>
+            <circle cx="22" cy="50" r="1.5" fill="${colors.secondary}"/>
+            <circle cx="78" cy="50" r="1.5" fill="${colors.secondary}"/>
+            <circle cx="50" cy="78" r="1.5" fill="${colors.secondary}"/>
+          `;
+          break;
+      }
+      
+      return `
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" style="background: rgba(10,5,30,0.35); filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));">
+          <!-- Outer circular grid -->
+          <circle cx="50" cy="50" r="44" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+          <circle cx="50" cy="50" r="32" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
+          <line x1="50" y1="6" x2="50" y2="94" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+          <line x1="6" y1="50" x2="94" y2="50" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+          ${paths}
+        </svg>
+      `;
+    }
+
+    // Global journal object
+
+    // Mapping for content-oriented taglines, domains, and banner images for each journal
+    const journalMetadataOverride = {
+      "IJCSE": {
+        tagline: "Advancing Innovation in Computing",
+        domain: "Technical",
+        bannerImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJECE": {
+        tagline: "Bridging Worlds through Advanced Communication",
+        domain: "Electronics & Communication",
+        bannerImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJEEE": {
+        tagline: "Powering the Future with Electrical Ingenuity",
+        domain: "Electrical & Electronics",
+        bannerImage: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJCE": {
+        tagline: "Constructing Sustainable Infrastructures",
+        domain: "Civil Engineering",
+        bannerImage: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJME": {
+        tagline: "Engineering Motion, Force, and Robotics",
+        domain: "Mechanical Engineering",
+        bannerImage: "https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJAES": {
+        tagline: "Sustainable Science for Global Growth",
+        domain: "Agriculture & Environment",
+        bannerImage: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJMS": {
+        tagline: "Pioneering Insights in Medical & Health Sciences",
+        domain: "Medical & Health Science",
+        bannerImage: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJEMS": {
+        tagline: "Analyzing Economic Forces & Strategic Management",
+        domain: "Economics & Management",
+        bannerImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJAP": {
+        tagline: "Deciphering the Laws of Matter and Energy",
+        domain: "Applied Physics",
+        bannerImage: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJHSS": {
+        tagline: "Exploring Human Culture, Behavior, and Society",
+        domain: "Humanities & Social Science",
+        bannerImage: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJAC": {
+        tagline: "Synthesizing Innovation through Molecular Chemistry",
+        domain: "Applied Chemistry",
+        bannerImage: "https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=600&q=80"
+      },
+      "IJIP": {
+        tagline: "Fostering Creative Minds & Multidisciplinary Ideas",
+        domain: "Multidisciplinary",
+        bannerImage: "https://images.unsplash.com/photo-1456428746267-a1756408f782?auto=format&fit=crop&w=600&q=80"
+      },
+      "ML": {
+        tagline: "Unleashing the Potential of Intelligent Systems & IoT",
+        domain: "Machine Learning & IoT",
+        bannerImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80"
+      }
+    };
+
+    // Extract journal code from URL query parameter
+    function getJournalCode() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("code") || "IJCSE"; // Default to IJCSE
+    }
+
+    // Generate realistic mock papers based on journal data
+    function generateMockPapers(journal) {
+      if (journal.code === "ML") {
+        return [
+          {
+            id: "ML-V2I2P101",
+            title: "EFFECTIVE WEATHER PREDICTION FRAMEWORK FROM IOT SENSOR THROUGH MACHINE LEARNING",
+            authors: "S.M. Mustafa Nawaz, K. Maharajan",
+            section: "Research Article",
+            externalId: "83",
+            pdfUrl: "https://jiml-iea.com/index.php/ml/article/view/83/24"
+          },
+          {
+            id: "ML-V2I2P102",
+            title: "A SMART AI-DISTRIBUTION MODEL FOR IOT DATASETS",
+            authors: "K. B. Manikandan, T Narasimha Rao, Velpula Nagi Reddy",
+            section: "Research Article",
+            externalId: "84",
+            pdfUrl: "https://jiml-iea.com/index.php/ml/article/view/84/26"
+          },
+          {
+            id: "ML-V2I2P103",
+            title: "AIR POLLUTION CONTROL AND MONITORING SYSTEM USING IOT SENSOR NETWORK",
+            authors: "A. Jayanthi, Vidhya V, Aravindh Raj B R, S. Karthika",
+            section: "Research Article",
+            externalId: "85",
+            pdfUrl: "https://jiml-iea.com/index.php/ml/article/view/85/27"
+          },
+          {
+            id: "ML-V2I2P104",
+            title: "SMART IRRIGATION USING TRANSFER LEARNING IN IOT-BASED AGRICULTURAL NETWORKS",
+            authors: "S. Sageengrana, Maharajan M S, D. Devi",
+            section: "Research Article",
+            externalId: "86",
+            pdfUrl: "https://jiml-iea.com/index.php/ml/article/view/86/28"
+          },
+          {
+            id: "ML-V2I2P105",
+            title: "IoT SENSOR DATA RETRIEVAL AND ANALYSIS THROUGH CLOUD ENVIRONMENT FOR EFFECTIVE POWER MANAGEMENT",
+            authors: "N. Yuvaraj, D. Udaya Suriya Rajkumar",
+            section: "Research Article",
+            externalId: "87",
+            pdfUrl: "https://jiml-iea.com/index.php/ml/article/view/87/29"
+          },
+          {
+            id: "ML-V2I2P106",
+            title: "ENERGY EFFICIENT IOT HEALTHCARE THROUGH WIRELESS SENSOR NETWORKS",
+            authors: "S. Prasath, K. S. Mohanasathiya, V. K. Narendira Kumar",
+            section: "Research Article",
+            externalId: "88",
+            pdfUrl: "https://jiml-iea.com/index.php/ml/article/view/88/30"
+          }
+        ];
+      }
+
+      if (journal.code === "IJCSE") {
+        return [
+          {
+            id: "IJCSE-V13I5P101",
+            title: "Deep Learning for Melanoma Detection: A Concise Review of Datasets, Architectures, and Clinical Challenges",
+            authors: "Suraj Redekar, Mayuri Patil",
+            section: "Research Article",
+            externalId: "638"
+          },
+          {
+            id: "IJCSE-V13I5P102",
+            title: "Secure Data Aggregation in Cloud-Assisted Internet of Things using Lightweight Cryptographic Frameworks",
+            authors: "Dr. K. V. D. Kiran, Rajasekar M.",
+            section: "Research Article",
+            externalId: "639"
+          },
+          {
+            id: "IJCSE-V13I5P103",
+            title: "A Comprehensive Survey of Consensus Mechanisms in Decentralized Blockchain Technologies",
+            authors: "Damodharan Palaniappan, A. Suresh",
+            section: "Review Paper",
+            externalId: "640"
+          }
+        ];
+      }
+
+      // Dynamic fallback for other journals
+      const code = journal.code;
+      const topic1 = journal.topics[0] || "Advanced Research Principles";
+      const topic2 = journal.topics[1] || "Experimental Methodologies";
+      const topic3 = journal.topics[2] || "Contemporary Developments";
+
+      return [
+        {
+          id: `${code}-V13I5P101`,
+          title: `Experimental Studies and Theoretical Foundations in ${topic1}`,
+          authors: `${journal.editorInChief.name.replace("Dr. ", "")}, Sarah Jenkins`,
+          section: "Research Article",
+          externalId: "101"
+        },
+        {
+          id: `${code}-V13I5P102`,
+          title: `A Novel Framework for Optimizing ${topic2} in Commercial Infrastructures`,
+          authors: `${journal.editors[0] ? journal.editors[0].name : "John Doe"}, Chen Wei`,
+          section: "Research Article",
+          externalId: "102"
+        },
+        {
+          id: `${code}-V13I5P103`,
+          title: `Emerging Trends and Strategic Paradigms in ${topic3}: A Systematic Review`,
+          authors: `${journal.editors[1] ? journal.editors[1].name : "Jane Smith"}, M. Al-Farsi`,
+          section: "Review Paper",
+          externalId: "103"
+        }
+      ];
+    }
+
+    // Initialize page content
+    function initPage() {
+      const code = getJournalCode().toUpperCase();
+
+      // Find journal in database
+      if (!journalData || !journalData[code]) {
+        console.error("Journal not found in database: " + code);
+        alert("Journal details not found. Redirecting to catalog.");
+        window.location.href = "journals.html";
+        return;
+      }
+
+      currentJournal = journalData[code];
+
+      // Update titles, breadcrumbs, tags
+      document.title = `${currentJournal.code} — ${currentJournal.title} | Saishnaa`;
+      document.getElementById("breadcrumb-journal-code").textContent = currentJournal.code;
+      document.getElementById("sidebar-journal-code").textContent = currentJournal.code;
+      document.getElementById("nav-journal-code").textContent = currentJournal.code;
+      document.getElementById("hero-journal-title").textContent = currentJournal.title;
+      document.getElementById("hero-journal-tagline").textContent = currentJournal.tagline || (journalMetadataOverride[code] ? journalMetadataOverride[code].tagline : "Advancing Knowledge & Scientific Research");
+      document.getElementById("hero-journal-eic").textContent = "Editor-in-Chief: " + currentJournal.editorInChief.name;
+
+      const override = journalMetadataOverride[code] || {
+        tagline: "Advancing Knowledge & Scientific Research",
+        domain: "Academic Research"
+      };
+
+      const issnText = currentJournal.issn === "Waiting For Approved" ? "Pending" : currentJournal.issn;
+      document.getElementById("hero-issn-val").textContent = issnText;
+      
+      // Dynamic frequency assignment based on currentJournal database value
+      const freqText = currentJournal.frequency || "12 Issue per Year";
+      document.getElementById("hero-freq-val").textContent = freqText;
+
+      // Dynamic indexing status assignment
+      const isScopus = code === "IJCSE" || code === "IJECE" || code === "IJEEE" || code === "IJEMS";
+      const indexingEl = document.getElementById("hero-indexing-val");
+      const indexingIcon = document.getElementById("hero-indexing-icon");
+      if (indexingEl && indexingIcon) {
+        indexingEl.textContent = isScopus ? "Scopus Indexed" : "Peer Reviewed";
+        indexingIcon.className = isScopus ? "fas fa-graduation-cap me-2 text-warning" : "fas fa-award me-2 text-warning";
+      }
+
+      // Inject the highly relevant content-oriented SVG dynamically (no network required, 100% offline-friendly)
+      const illustrationEl = document.getElementById("hero-journal-illustration");
+      if (illustrationEl) {
+        illustrationEl.innerHTML = getJournalSvg(code);
+      }
+
+      // Populate Sidebar Journal Info Block
+      const info = currentJournal.info || {
+        publisher: currentJournal.publisher || "Seventh Sense Research Group®",
+        country: "India",
+        language: "English",
+        firstYear: "2014",
+        access: "Open Access",
+        format: "Online",
+        responsiblePerson: "SSRG Editorial Panel",
+        email: currentJournal.email,
+        mobile: "N/A",
+        address: "Seventh Sense Research Group, India"
+      };
+
+      document.getElementById("info-publisher").textContent = info.publisher;
+      document.getElementById("info-country").textContent = info.country;
+      document.getElementById("info-language").textContent = info.language;
+      document.getElementById("info-first-year").textContent = info.firstYear;
+      document.getElementById("info-access").textContent = info.access;
+      document.getElementById("info-format").textContent = info.format;
+      document.getElementById("info-responsible").textContent = info.responsiblePerson;
+      document.getElementById("info-email").textContent = info.email;
+      document.getElementById("info-mobile").textContent = info.mobile;
+      document.getElementById("info-address").textContent = info.address;
+
+      document.getElementById("hero-pub-model-badge").textContent = code === "ML" ? "Open Access (No APC)" : "Open Access";
+
+      const coverUrl = `img/${code.toLowerCase()}_cover.svg`;
+      fetch(coverUrl)
+        .then(res => {
+          if (!res.ok) throw new Error("Load failed");
+          return res.text();
+        })
+        .then(svgText => {
+          const issnVal = currentJournal.issn || "Waiting For Approved";
+          
+          let metaText = "";
+          if (issnVal && issnVal !== "Waiting For Approved") {
+            metaText = `ISSN: ${issnVal}`;
+          }
+          
+          const modifiedSvg = svgText.replace(
+            /(?:ISSN:\s*[^|]+\|\s*)?VOLUME\s*\d+\s*\|\s*ISSUE\s*\d+/i,
+            metaText
+          );
+
+          const dynamicSrc = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvg)}`;
+          
+          const imgEl = document.getElementById("hero-journal-cover");
+          if (imgEl) {
+            imgEl.style.backgroundImage = `url('${dynamicSrc}')`;
+            imgEl.style.display = "block";
+          }
+          const fallbackEl = document.getElementById("hero-cover-fallback");
+          if (fallbackEl) {
+            fallbackEl.classList.add('d-none');
+            fallbackEl.classList.remove('d-flex');
+          }
+
+          const sidebarCfpBanner = document.getElementById("sidebar-cfp-banner");
+          if (sidebarCfpBanner) {
+            sidebarCfpBanner.style.backgroundImage = `url('${dynamicSrc}')`;
+            sidebarCfpBanner.style.display = "block";
+            const sidebarFallback = document.getElementById("sidebar-cfp-fallback");
+            if (sidebarFallback) {
+              sidebarFallback.classList.add('d-none');
+              sidebarFallback.classList.remove('d-flex');
+            }
+          }
+        })
+        .catch(err => {
+          console.error("Hero cover dynamic loading error:", err);
+          const imgEl = document.getElementById("hero-journal-cover");
+          if (imgEl) {
+            imgEl.style.backgroundImage = `url('${coverUrl}')`;
+            imgEl.style.display = "block";
+          }
+          const fallbackEl = document.getElementById("hero-cover-fallback");
+          if (fallbackEl) {
+            fallbackEl.classList.add('d-none');
+            fallbackEl.classList.remove('d-flex');
+          }
+
+          const sidebarCfpBanner = document.getElementById("sidebar-cfp-banner");
+          if (sidebarCfpBanner) {
+            sidebarCfpBanner.style.backgroundImage = `url('${coverUrl}')`;
+            sidebarCfpBanner.style.display = "block";
+            const sidebarFallback = document.getElementById("sidebar-cfp-fallback");
+            if (sidebarFallback) {
+              sidebarFallback.classList.add('d-none');
+              sidebarFallback.classList.remove('d-flex');
+            }
+          }
+        });
+      // 1. AIM & SCOPE - Expanded 7-Card Insights Grid (APC removed)
+      const insightsRow = document.getElementById("journal-metrics-row");
+      insightsRow.innerHTML = "";
+
+      const reviewTime = currentJournal.code === "ML" ? "90 Days" : "90 Days (Review)";
+
+      const insights = [
+        { val: reviewTime, lbl: "Review Time", icon: "fa-clock text-primary" },
+        { val: "30 Days", lbl: "Acceptance after Review", icon: "fa-check-double text-warning" },
+        { val: "30 Days", lbl: "Publication after Acceptance", icon: "fa-upload text-info" },
+        { val: currentJournal.frequency, lbl: "Publication Frequency", icon: "fa-calendar-alt text-purple" },
+        { val: currentJournal.issn === "Waiting For Approved" ? "Pending" : currentJournal.issn, lbl: "E-ISSN Number", icon: "fa-fingerprint text-danger" },
+        { val: currentJournal.category, lbl: "Journal Subjects", icon: "fa-book text-secondary" },
+        { val: currentJournal.metrics.acceptanceRate || "20%", lbl: "Acceptance Rate", icon: "fa-chart-pie text-success" }
+      ];
+
+      insights.forEach(ins => {
+        const card = document.createElement("div");
+        card.className = "insight-card-style text-center d-flex flex-column align-items-center justify-content-center";
+        card.innerHTML = `
+            <div class="mb-2 fs-4"><i class="fas ${ins.icon}"></i></div>
+            <div style="font-family:'Outfit',sans-serif; font-size:1.1rem; font-weight:800; color:var(--main-color);">${ins.val}</div>
+            <div style="font-size:0.75rem; color:#777; font-weight:600; margin-top:2px;">${ins.lbl}</div>
+          `;
+        insightsRow.appendChild(card);
+      });
+
+      // Populate Right Widgets Sidebar
+      document.getElementById("cfp-journal-title").textContent = currentJournal.title;
+      document.getElementById("sidebar-cfp-code").textContent = currentJournal.code;
+      const sidebarCfpBanner = document.getElementById("sidebar-cfp-banner");
+      // Managed asynchronously via dynamic cover loading block
+
+      if (code === "ML") {
+        document.getElementById("cfp-vol-val").textContent = "2";
+        document.getElementById("cfp-issue-val").textContent = "2";
+        document.getElementById("cfp-date-val").textContent = "December 2026";
+        document.getElementById("metrics-rec-2025").textContent = "35";
+        document.getElementById("metrics-pub-2025").textContent = "12";
+        document.getElementById("metrics-rate-2025").textContent = "34%";
+        document.getElementById("metrics-rec-2026").textContent = "10";
+      } else {
+        document.getElementById("cfp-vol-val").textContent = "13";
+        document.getElementById("cfp-issue-val").textContent = "5";
+        document.getElementById("cfp-date-val").textContent = "December 2026";
+        document.getElementById("metrics-rec-2025").textContent = "120";
+        document.getElementById("metrics-pub-2025").textContent = "24";
+        document.getElementById("metrics-rate-2025").textContent = currentJournal.metrics.acceptanceRate || "20%";
+        document.getElementById("metrics-rec-2026").textContent = "45";
+      }
+
+      const totalEditors = currentJournal.editors.length + 1; // +1 for EIC
+      const womenCount = code === "ML" ? 1 : Math.max(1, Math.round(totalEditors * 0.15));
+      const menCount = totalEditors - womenCount;
+      const menPct = Math.round((menCount / totalEditors) * 100);
+      const womenPct = 100 - menPct;
+
+      document.getElementById("diversity-men-count").textContent = menCount;
+      document.getElementById("diversity-men-pct").textContent = `${menPct}%`;
+      document.getElementById("diversity-women-count").textContent = womenCount;
+      document.getElementById("diversity-women-pct").textContent = `${womenPct}%`;
+
+      const donutSegment = document.querySelector("#customblock-diversity circle:nth-child(2)");
+      if (donutSegment) {
+        donutSegment.setAttribute("stroke-dasharray", `${menPct} ${womenPct}`);
+      }
+      const donutCenterText = document.querySelector("#customblock-diversity .position-absolute");
+      if (donutCenterText) {
+        donutCenterText.textContent = `${menPct}%`;
+      }
+
+      // Description Paragraphs
+      const descContainer = document.getElementById("journal-scope-description");
+      descContainer.innerHTML = "";
+      currentJournal.description.forEach(p => {
+        const para = document.createElement("p");
+        para.className = "mb-3 text-justify";
+        para.textContent = p;
+        descContainer.appendChild(para);
+      });
+
+      // Topics List
+      const topicsList = document.getElementById("journal-topics-list");
+      topicsList.innerHTML = "";
+
+      const col1 = document.createElement("div");
+      col1.className = "col-md-6";
+      const col2 = document.createElement("div");
+      col2.className = "col-md-6";
+
+      const ul1 = document.createElement("ul");
+      ul1.className = "list-unstyled d-flex flex-column gap-2";
+      const ul2 = document.createElement("ul");
+      ul2.className = "list-unstyled d-flex flex-column gap-2";
+
+      currentJournal.topics.forEach((topic, idx) => {
+        const li = document.createElement("li");
+        li.className = "d-flex align-items-start gap-2 small";
+        li.innerHTML = `<i class="fas fa-check-circle mt-1 text-primary" style="font-size:0.8rem; flex-shrink:0;"></i> <span>${topic}</span>`;
+        if (idx % 2 === 0) {
+          ul1.appendChild(li);
+        } else {
+          ul2.appendChild(li);
+        }
+      });
+
+      col1.appendChild(ul1);
+      col2.appendChild(ul2);
+      topicsList.appendChild(col1);
+      topicsList.appendChild(col2);
+
+      // 2. EDITORIAL BOARD
+      document.getElementById("eic-name").textContent = currentJournal.editorInChief.name;
+      document.getElementById("eic-affiliation").textContent = currentJournal.editorInChief.affiliation;
+      document.getElementById("editors-count-badge").textContent = `${currentJournal.editors.length} Board Members`;
+
+      renderEditorsList(currentJournal.editors);
+
+      // 3. PAPER SUBMISSION
+      document.getElementById("submission-email-text").textContent = currentJournal.email;
+
+      const guidelines = [
+        "Important Items when submitting a manuscript: Submissions by anyone other than one of the authors will not be accepted. The submitting author takes responsibility for the paper during submission and peer review.",
+        "Manuscripts submitted to this journal will be deemed as they have not been published and are not under consideration for publication elsewhere.",
+        "Submit your paper in Microsoft Word format (.doc or .docx) directly as an email attachment.",
+        "Submitting the paper in multiple journals is an offence. Please do not submit the same paper to more than one journal.",
+        "Once the paper is accepted, it cannot be withdrawn at any cost.",
+        "Please strictly follow publication ethics, regulation and avoid plagiarism or copied materials.",
+        "Strictly follow the official SSSL Journals Paper Template when preparing your final manuscript."
+      ];
+
+      const guidelinesContainer = document.getElementById("preparation-guidelines-list");
+      guidelinesContainer.innerHTML = "";
+      guidelines.forEach(item => {
+        const wrap = document.createElement("div");
+        wrap.className = "guideline-item";
+        wrap.innerHTML = `
+            <div class="guideline-icon"><i class="fas fa-check"></i></div>
+            <div class="guideline-text">${item}</div>
+          `;
+        guidelinesContainer.appendChild(wrap);
+      });
+
+      // Set downloads URLs
+      const paperUrl = `https://internationaljournalssrg.org/public/assets/images/${currentJournal.code}/${currentJournal.code}_paper.doc`;
+      const copyrightUrl = `https://internationaljournalssrg.org/public/assets/images/${currentJournal.code}/${currentJournal.code}_copyright.docx`;
+
+      document.getElementById("template-paper-btn").href = paperUrl;
+      document.getElementById("template-copyright-btn").href = copyrightUrl;
+      document.getElementById("sidebar-paper-btn").href = paperUrl;
+      document.getElementById("sidebar-copyright-btn").href = copyrightUrl;
+
+      // Mail button action
+      document.getElementById("btn-submit-mail").addEventListener("click", () => {
+        window.location.href = `mailto:${currentJournal.email}`;
+      });
+
+      // 4. INDEXING
+      const indexingContainer = document.getElementById("indexing-badges-container");
+      indexingContainer.innerHTML = "";
+
+      const indexList = ["Crossref", "Google Scholar", "Semantic Scholar", "Scilit", "WorldCat", "Turnitin"];
+      if (isScopus) indexList.unshift("Scopus");
+
+      indexList.forEach(item => {
+        const badge = document.createElement("div");
+        badge.className = "badge-card";
+        badge.innerHTML = `
+            <i class="fas fa-award text-warning mb-2 fs-3"></i>
+            <span>${item}</span>
+          `;
+        indexingContainer.appendChild(badge);
+      });
+
+      // 5. APC & FEES
+      if (isScopus) {
+        document.getElementById("apc-international-val").textContent = "$150 USD";
+        document.getElementById("paypal-apc-amount").value = 150;
+      } else {
+        document.getElementById("apc-international-val").textContent = "$120 USD";
+        document.getElementById("paypal-apc-amount").value = 120;
+      }
+
+      // 6. CURRENT ISSUE
+      const papers = generateMockPapers(currentJournal);
+      const currentIssueContainer = document.getElementById("current-issue-papers-list");
+      currentIssueContainer.innerHTML = "";
+
+      const scopeIssueContainer = document.getElementById("scope-issue-papers-list");
+      scopeIssueContainer.innerHTML = "";
+
+      papers.forEach(p => {
+        const pCard = document.createElement("div");
+        pCard.className = "paper-card";
+
+        const hrefLink = p.pdfUrl || `paper-details.html?code=${currentJournal.code}&id=${p.externalId}`;
+        const targetAttr = p.pdfUrl ? 'target="_blank"' : '';
+        const linkText = p.pdfUrl ? 'View PDF' : 'View Details';
+        const iconType = p.pdfUrl ? 'fa-file-pdf text-danger' : 'fa-file-alt text-primary';
+
+        pCard.innerHTML = `
+            <div class="paper-title">${p.title}</div>
+            <div class="paper-authors"><i class="fas fa-user-circle text-primary"></i> ${p.authors}</div>
+            <div class="paper-meta">
+              <span class="badge bg-light text-dark border px-3 py-2 rounded-5 fw-bold" style="font-size:0.75rem;"><i class="fas ${iconType} me-1"></i> ${p.section}</span>
+              <span class="small text-muted fw-semibold">${p.id}</span>
+              <a href="${hrefLink}" ${targetAttr} class="btn btn-purple py-2 px-4 rounded-5" style="font-size:0.78rem;">
+                <i class="fas ${p.pdfUrl ? 'fa-file-pdf' : 'fa-file-alt'} me-1"></i> ${linkText}
+              </a>
+            </div>
+          `;
+
+        currentIssueContainer.appendChild(pCard.cloneNode(true));
+        scopeIssueContainer.appendChild(pCard);
+      });
+
+      // 7. ARCHIVES (Volumes 13 to 7)
+      const archivesContainer = document.getElementById("archivesAccordion");
+      archivesContainer.innerHTML = "";
+      const years = [
+        { year: "2026", vol: 13, maxIssue: 5 },
+        { year: "2025", vol: 12, maxIssue: 12 },
+        { year: "2024", vol: 11, maxIssue: 12 },
+        { year: "2023", vol: 10, maxIssue: 12 },
+        { year: "2022", vol: 9, maxIssue: 12 },
+        { year: "2021", vol: 8, maxIssue: 12 },
+        { year: "2020", vol: 7, maxIssue: 12 }
+      ];
+
+      years.forEach((y, idx) => {
+        const aItem = document.createElement("div");
+        aItem.className = "accordion-item";
+
+        let issuesGrid = `<div class="row g-2">`;
+        for (let i = y.maxIssue; i >= 1; i--) {
+          issuesGrid += `
+              <div class="col-6 col-sm-4 col-md-3">
+                <a href="archive-details.html?code=${currentJournal.code}&page=Volume${y.vol}-Issue${i}-${y.year}" class="btn btn-outline-purple w-100 py-2 rounded-3 text-start small fw-bold" style="font-size:0.8rem; border-color: rgba(77, 30, 163, 0.15); color: var(--main-color);">
+                  <i class="fas fa-book me-1 opacity-75"></i> Vol ${y.vol} Issue ${i}
+                </a>
+              </div>
+            `;
+        }
+        issuesGrid += `</div>`;
+
+        aItem.innerHTML = `
+            <h2 class="accordion-header" id="headingArch-${y.year}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseArch-${y.year}">
+                Calendar Year ${y.year} (Volume ${y.vol})
+              </button>
+            </h2>
+            <div id="collapseArch-${y.year}" class="accordion-collapse collapse" data-bs-parent="#archivesAccordion">
+              <div class="accordion-body">
+                ${issuesGrid}
+              </div>
+            </div>
+          `;
+        archivesContainer.appendChild(aItem);
+      });
+
+      // 8. PUBLICATION ETHICS
+      const ethicsContainer = document.getElementById("ethicsAccordion");
+      ethicsContainer.innerHTML = "";
+      globalGuidelinesData.ethics.forEach((item, idx) => {
+        const aItem = document.createElement("div");
+        aItem.className = "accordion-item";
+        aItem.innerHTML = `
+            <h2 class="accordion-header" id="headingEth-${idx}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEth-${idx}">
+                ${item.heading}
+              </button>
+            </h2>
+            <div id="collapseEth-${idx}" class="accordion-collapse collapse" data-bs-parent="#ethicsAccordion">
+              <div class="accordion-body text-justify">
+                ${item.content.replace(/current-email/g, currentJournal.email)}
+              </div>
+            </div>
+          `;
+        ethicsContainer.appendChild(aItem);
+      });
+
+      // 9. GUIDELINES FOR AUTHORS
+      const authorGuidelinesContainer = document.getElementById("authorsGuidelinesAccordion");
+      authorGuidelinesContainer.innerHTML = "";
+      globalGuidelinesData.authorGuidelines.forEach((item, idx) => {
+        const aItem = document.createElement("div");
+        aItem.className = "accordion-item";
+        aItem.innerHTML = `
+            <h2 class="accordion-header" id="headingAuth-${idx}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAuth-${idx}">
+                ${item.heading}
+              </button>
+            </h2>
+            <div id="collapseAuth-${idx}" class="accordion-collapse collapse" data-bs-parent="#authorsGuidelinesAccordion">
+              <div class="accordion-body text-justify">
+                ${item.content}
+              </div>
+            </div>
+          `;
+        authorGuidelinesContainer.appendChild(aItem);
+      });
+
+      // 10. GUIDELINES FOR EDITORS
+      const editorsTimelineContainer = document.getElementById("editorsWorkflowTimeline");
+      editorsTimelineContainer.innerHTML = "";
+      globalGuidelinesData.editorialWorkflow.forEach(item => {
+        const stepDiv = document.createElement("div");
+        stepDiv.className = "timeline-step";
+        stepDiv.setAttribute("data-step", item.step);
+        stepDiv.innerHTML = `
+            <div class="timeline-step-title">${item.title}</div>
+            <div class="timeline-step-desc">${item.description}</div>
+          `;
+        editorsTimelineContainer.appendChild(stepDiv);
+      });
+
+      // 11. GUIDELINES FOR REVIEWER
+      const reviewerGuidelinesContainer = document.getElementById("reviewersGuidelinesAccordion");
+      reviewerGuidelinesContainer.innerHTML = "";
+      globalGuidelinesData.reviewerGuidelines.forEach((item, idx) => {
+        const aItem = document.createElement("div");
+        aItem.className = "accordion-item";
+        aItem.innerHTML = `
+            <h2 class="accordion-header" id="headingRev-${idx}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRev-${idx}">
+                ${item.heading}
+              </button>
+            </h2>
+            <div id="collapseRev-${idx}" class="accordion-collapse collapse" data-bs-parent="#reviewersGuidelinesAccordion">
+              <div class="accordion-body text-justify">
+                ${item.content}
+              </div>
+            </div>
+          `;
+        reviewerGuidelinesContainer.appendChild(aItem);
+      });
+
+      // 12. MODE OF PAYMENT FOR APC
+      document.getElementById("sbi-collect-btn").href = `https://internationaljournalssrg.org/${currentJournal.code}/sbi-i-collect.html`;
+
+      // PayPal checkout simulation
+      const payBtn = document.getElementById("paypal-sim-checkout-btn");
+      const successMsg = document.getElementById("paypal-sim-success-msg");
+      const artIdInput = document.getElementById("paypal-article-id");
+
+      payBtn.addEventListener("click", () => {
+        if (!artIdInput.value.trim()) {
+          alert("Please enter a valid Article ID before checkout.");
+          artIdInput.focus();
+          return;
+        }
+        payBtn.disabled = true;
+        payBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status"></span>Processing...`;
+        setTimeout(() => {
+          payBtn.innerHTML = `<i class="fas fa-check-circle me-1"></i> Paid Successfully`;
+          payBtn.classList.remove("btn-warning");
+          payBtn.classList.add("btn-success");
+          successMsg.style.display = "block";
+          successMsg.innerHTML = `<i class="fas fa-check-circle me-1"></i> Success! Payment processed for Article ID: ${artIdInput.value.trim()}. Transaction Reference receipt sent.`;
+        }, 2000);
+      });
+
+      // 13. Dynamic Policy Panels & fallback templates
+      const policies = currentJournal.policies || {};
+      const journalTitle = currentJournal.title;
+      const journalEmail = currentJournal.email;
+
+      // Privacy Statement
+      const privacyText = policies.privacyStatement || `The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party.`;
+      document.getElementById("privacy-statement-content").innerHTML = renderMarkdown(privacyText);
+
+      // Open Access Policy
+      const openAccessText = policies.openAccess || `This journal provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge. All articles are published under a Creative Commons Attribution (CC BY) license, allowing anyone to copy, redistribute, and build upon the work, provided the original authors and source are properly credited.`;
+      document.getElementById("open-access-content").innerHTML = renderMarkdown(openAccessText);
+
+      // Conflicts of Interest
+      const conflictsText = policies.conflictsInterest || `### Conflict of Interest Policy\n\nA conflict of interest exists when any association—between authors, reviewers, or editors could compromise, or appear to compromise, the impartial submission, review, editorial decision, or publication of a manuscript. Conflicts may involve individuals or organisations and may be financial or non-financial in nature.\n\n***\n\nAuthors must declare any potential conflicts of interest upon submission. Reviewers must declare any conflicts of interest before accepting to review a manuscript. Editors will recuse themselves from handling manuscripts where they have a conflict of interest.`;
+      document.getElementById("conflicts-interest-content").innerHTML = renderMarkdown(conflictsText);
+
+      // Corrections and Retraction
+      const correctionsText = policies.correctionsRetraction || `When errors are identified in already published papers, the journal will assess the issue and determine the appropriate course of action, consulting the editor(s), author(s), and the authors’ institution(s) when necessary. Author-related errors may be corrected through a corrigendum, while publisher-introduced errors will be addressed through an erratum.\n\nIn cases where misconduct or significant inaccuracies affect the validity of the findings, a retraction or a statement of concern may be required. This journal follows the COPE Retraction Guidelines for handling such situations.`;
+      document.getElementById("corrections-retraction-content").innerHTML = renderMarkdown(correctionsText);
+
+      // Plagiarism Policy
+      const plagiarismText = policies.plagiarismPolicy || `Plagiarism refers to the act of presenting another person’s work, ideas, or expressions as one’s own without proper acknowledgment. This journal reviews all submitted manuscripts for plagiarism and takes strict action when detected. Manuscripts with high text similarity (greater than 30%) are subject to immediate rejection or revision. We use Turnitin to detect text similarity, duplication, and uncredited use of previously published material.`;
+      document.getElementById("plagiarism-policy-content").innerHTML = renderMarkdown(plagiarismText);
+
+      // Misconduct & Sanctions
+      const misconductText = policies.misconductSanctions || `Concerns related to research ethics or suspected violations of the journal’s publishing ethics-whether raised before or after publication-should be reported directly to the journal at ${journalEmail}. Upon receiving any allegation of misconduct, the editors will initiate a thorough investigation. Depending on the severity of the violation, the journal may reject the manuscript, issue a formal retraction, or temporarily ban authors from submitting to the journal.`;
+      document.getElementById("misconduct-sanctions-content").innerHTML = renderMarkdown(misconductText);
+
+      // Digital Preservation
+      const preservationText = policies.digitalPreservation || `All content published in the ${journalTitle} is securely preserved to ensure long-term accessibility. The journal maintains a robust digital archiving system through its cloud storage and server backup infrastructure. These preservation measures ensure that all published materials remain accessible and usable for future scholars, researchers, and students.`;
+      document.getElementById("digital-preservation-content").innerHTML = renderMarkdown(preservationText);
+
+      // Announcements
+      const announcementsText = policies.announcements || `No announcements have been published at this time.`;
+      document.getElementById("announcements-content").innerHTML = renderMarkdown(announcementsText);
+
+      // Custom Publication Ethics panel
+      const ethicsIntro = document.getElementById("publication-ethics-intro");
+      const ethicsAccordion = document.getElementById("ethicsAccordion");
+      const ethicsContent = document.getElementById("publication-ethics-content");
+
+      if (policies.publicationEthics) {
+        if (ethicsIntro) ethicsIntro.style.display = "none";
+        if (ethicsAccordion) ethicsAccordion.style.display = "none";
+        if (ethicsContent) {
+          ethicsContent.style.display = "block";
+          ethicsContent.innerHTML = renderMarkdown(policies.publicationEthics);
+        }
+      } else {
+        if (ethicsIntro) ethicsIntro.style.display = "block";
+        if (ethicsAccordion) ethicsAccordion.style.display = "block";
+        if (ethicsContent) {
+          ethicsContent.style.display = "none";
+        }
+      }
+
+      // Initialize Tab Click Listeners
+      const menuItems = document.querySelectorAll(".sidebar-item");
+      menuItems.forEach(item => {
+        const tabId = item.getAttribute("data-tab");
+        if (tabId === "download-copyright" || tabId === "download-paper") return; // Skip downloads
+
+        item.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          // Toggle active menu class
+          menuItems.forEach(i => i.classList.remove("active"));
+          this.classList.add("active");
+
+          // Toggle active content pane
+          const contentCards = document.querySelectorAll(".content-card");
+          contentCards.forEach(card => card.classList.remove("active"));
+          document.getElementById(`tab-${tabId}`).classList.add("active");
+
+          // Update URL hash without causing page reload
+          history.pushState(null, null, '#' + tabId);
+
+          // Smooth scroll to top of section content to keep UX clean and aligned
+          if (window.innerWidth < 992) {
+            document.getElementById(`tab-${tabId}`).scrollIntoView({ behavior: 'smooth' });
+          } else {
+            const wrapper = document.querySelector(".details-wrapper");
+            if (wrapper) {
+              const yOffset = wrapper.getBoundingClientRect().top + window.pageYOffset - 80;
+              window.scrollTo({ top: yOffset, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      // Setup Editors Search filter
+      document.getElementById("editors-search-input").addEventListener("input", function (e) {
+        const query = e.target.value.toLowerCase().trim();
+        const filtered = currentJournal.editors.filter(editor =>
+          editor.name.toLowerCase().includes(query) ||
+          editor.affiliation.toLowerCase().includes(query)
+        );
+        renderEditorsList(filtered);
+      });
+
+      // Handle scroll for custom journal navbar styling
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("journal-navbar");
+        if (navbar) {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled", "navbar-blur");
+            navbar.style.padding = "8px 0";
+            navbar.style.backgroundColor = "rgba(77, 30, 163, 0.97)";
+          } else {
+            navbar.classList.remove("scrolled", "navbar-blur");
+            navbar.style.padding = "15px 0";
+            navbar.style.backgroundColor = "var(--main-color)";
+          }
+        }
+      });
+
+      // Deep linking hash navigation on load
+      function handleHashNavigation() {
+        const hash = window.location.hash;
+        if (hash) {
+          const tabId = hash.substring(1);
+          const tabTrigger = document.querySelector(`.sidebar-item[data-tab="${tabId}"]`);
+          if (tabTrigger) {
+            // Wait slightly for bootstrap to initialize
+            setTimeout(() => {
+              tabTrigger.click();
+            }, 100);
+          }
+        }
+      }
+      handleHashNavigation();
+      window.addEventListener("hashchange", handleHashNavigation);
+    }
+
+    function renderEditorsList(list) {
+      const container = document.getElementById("editors-grid-container");
+      container.innerHTML = "";
+
+      if (list.length === 0) {
+        container.innerHTML = `
+            <div class="col-12 text-center py-5">
+              <i class="fas fa-user-slash text-muted fs-2 mb-3 d-block"></i>
+              <p class="text-muted">No editors match your search criteria.</p>
+            </div>
+          `;
+        return;
+      }
+
+      list.forEach(editor => {
+        const card = document.createElement("div");
+        card.className = "board-card";
+        card.innerHTML = `
+            <div class="board-card-name"><i class="fas fa-user-circle text-primary me-2"></i>${editor.name}</div>
+            <div class="board-card-aff">${editor.affiliation}</div>
+          `;
+        container.appendChild(card);
+      });
+    }
+
+    function copySubmissionEmail() {
+      if (!currentJournal) return;
+      navigator.clipboard.writeText(currentJournal.email).then(() => {
+        alert("Submission email copied to clipboard: " + currentJournal.email);
+      }).catch(err => {
+        console.error("Failed to copy text: ", err);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", initPage);
+  </script>
+</body>
+
+</html>

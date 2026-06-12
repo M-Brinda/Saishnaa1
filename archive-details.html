@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="img/sai.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Issue Archive | Saishnaa Software Solutions</title>
+
+  <!-- CDNs & Web Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+
+  <style>
+    .details-wrapper {
+      min-height: 100vh;
+      background-color: #f7f9fc;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    .archive-hero {
+      background: linear-gradient(135deg, rgba(77, 30, 163, 0.95) 0%, rgba(13, 40, 71, 0.95) 100%);
+      box-shadow: 0 10px 30px rgba(77, 30, 163, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paper-card {
+      background: #fff;
+      border: 1px solid rgba(77, 30, 163, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+      margin-bottom: 20px;
+    }
+
+    .paper-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(77, 30, 163, 0.06);
+      border-color: rgba(77, 30, 163, 0.18);
+    }
+
+    .paper-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .paper-authors {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .paper-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      padding-top: 15px;
+    }
+
+    .btn-purple {
+      background: linear-gradient(135deg, var(--main-color), #7645fc);
+      color: white;
+      border: none;
+      transition: all 0.3s;
+    }
+
+    .btn-purple:hover {
+      background: linear-gradient(135deg, #3c1485, var(--main-color));
+      color: white;
+      box-shadow: 0 4px 15px rgba(77, 30, 163, 0.3);
+    }
+
+    .spinner-wrap {
+      text-align: center;
+      padding: 80px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar placeholder -->
+  <div id="navbar-placeholder"></div>
+
+  <main class="details-wrapper">
+    <div class="container page-fade-in">
+
+      <!-- Breadcrumbs -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-size: 0.88rem; font-weight: 500;">
+          <li class="breadcrumb-item"><a href="index.html" style="color: var(--main-color);">Home</a></li>
+          <li class="breadcrumb-item"><a href="journals.html" style="color: var(--main-color);">Journals</a></li>
+          <li class="breadcrumb-item"><a href="#" id="breadcrumb-journal-code"
+              style="color: var(--main-color);">Journal</a></li>
+          <li class="breadcrumb-item active" id="breadcrumb-active-item" aria-current="page">Loading Archive...</li>
+        </ol>
+      </nav>
+
+      <!-- Page Hero -->
+      <div class="p-4 p-md-5 mb-5 rounded-4 text-white archive-hero">
+        <div style="position: relative; z-index: 2;">
+          <span class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-5 mb-3" id="hero-category-badge"
+            style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase;">
+            Journal Archive
+          </span>
+          <h1 class="display-6 fw-bold mb-3" id="hero-title" style="font-family: Outfit, sans-serif;">
+            Loading Issue Archives...
+          </h1>
+          <p class="fs-6 opacity-90 mb-0" id="hero-subtitle" style="max-width: 800px; line-height: 1.6;">
+            Browse published paper details natively within Saishnaa Academic Journals.
+          </p>
+        </div>
+      </div>
+
+      <!-- Papers Listing Container -->
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+
+          <!-- Loading Spinner -->
+          <div id="loading-spinner" class="spinner-wrap">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="text-muted mt-3 fw-bold">Fetching issue details from repository...</p>
+          </div>
+
+          <!-- Error State -->
+          <div id="error-card" class="card p-5 text-center shadow-sm rounded-4 border-0 mb-4 d-none"
+            style="background-color: #fff5f5;">
+            <i class="fas fa-exclamation-triangle text-danger fs-1 mb-3"></i>
+            <h4 class="fw-bold text-danger mb-2">Failed to Load Archive</h4>
+            <p class="text-muted mb-4" id="error-message">We encountered an error while retrieving the article list.
+              Please try again.</p>
+            <button class="btn btn-danger py-2 px-4 rounded-5" onclick="window.location.reload()">
+              <i class="fas fa-sync me-1"></i> Retry
+            </button>
+          </div>
+
+          <!-- Empty State -->
+          <div id="empty-card" class="card p-5 text-center shadow-sm rounded-4 border-0 mb-4 d-none">
+            <i class="fas fa-folder-open text-muted fs-1 mb-3"></i>
+            <h4 class="fw-bold mb-2">No Papers Found</h4>
+            <p class="text-muted mb-0">No papers were published in this issue, or they are currently being cataloged.
+            </p>
+          </div>
+
+          <!-- Papers List -->
+          <div id="papers-list-container">
+            <!-- Dynamically populated -->
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/journal-data.js"></script>
+
+  <script>
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        code: (params.get("code") || "IJCSE").toUpperCase(),
+        page: params.get("page")
+      };
+    }
+
+    function initArchiveDetails() {
+      const { code, page } = getQueryParams();
+
+      // Setup breadcrumbs
+      const journalBtn = document.getElementById("breadcrumb-journal-code");
+      journalBtn.href = `journal-details.html?code=${code}`;
+      journalBtn.textContent = code;
+
+      if (!page) {
+        showError("Missing issue parameters.");
+        return;
+      }
+
+      // Setup base titles
+      document.title = `${code} — ${page.replace(/-/g, ' ')} | Saishnaa`;
+
+      // Fetch from API
+      fetch(`/api/archive?code=${code}&page=${page}`)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          document.getElementById("loading-spinner").classList.add("d-none");
+          if (data.error) {
+            showError(data.error);
+            return;
+          }
+          renderArchiveData(data, code, page);
+        })
+        .catch(err => {
+          console.error(err);
+          showError("Unable to establish communication with the archives repository. Please verify the URL parameters.");
+        });
+    }
+
+    function renderArchiveData(data, code, page) {
+      const titleText = data.title || page.replace(/-/g, ' ');
+      document.getElementById("hero-title").textContent = `${code} — ${titleText}`;
+      document.getElementById("breadcrumb-active-item").textContent = titleText;
+
+      const papers = data.papers || [];
+      if (papers.length === 0) {
+        document.getElementById("empty-card").classList.remove("d-none");
+        return;
+      }
+
+      const container = document.getElementById("papers-list-container");
+      container.innerHTML = "";
+
+      papers.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "paper-card";
+        card.innerHTML = `
+            <div class="paper-title">${p.title}</div>
+            <div class="paper-authors">
+              <i class="fas fa-user-circle text-primary"></i> ${p.authors}
+            </div>
+            <div class="paper-meta">
+              <div>
+                <span class="badge bg-light text-dark border px-3 py-2 rounded-5 fw-bold" style="font-size:0.75rem;">
+                  <i class="fas fa-file-alt text-primary me-1"></i> ${p.section}
+                </span>
+                <span class="ms-2 small text-muted fw-semibold">${p.id}</span>
+              </div>
+              <a href="paper-details.html?code=${code}&id=${p.paperId}" class="btn btn-purple py-2 px-4 rounded-5" style="font-size:0.82rem;">
+                <i class="fas fa-file-alt me-1"></i> View Paper Details
+              </a>
+            </div>
+          `;
+        container.appendChild(card);
+      });
+    }
+
+    function showError(msg) {
+      document.getElementById("loading-spinner").classList.add("d-none");
+      const errorCard = document.getElementById("error-card");
+      errorCard.classList.remove("d-none");
+      document.getElementById("error-message").textContent = msg;
+    }
+
+    window.addEventListener("DOMContentLoaded", initArchiveDetails);
+  </script>
+</body>
+
+</html>

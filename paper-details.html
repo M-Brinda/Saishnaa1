@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="img/sai.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paper Details | Saishnaa Software Solutions</title>
+
+  <!-- CDNs & Web Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+
+  <style>
+    .details-wrapper {
+      min-height: 100vh;
+      background-color: #f7f9fc;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    .paper-hero {
+      background: linear-gradient(135deg, rgba(77, 30, 163, 0.95) 0%, rgba(13, 40, 71, 0.95) 100%);
+      box-shadow: 0 10px 30px rgba(77, 30, 163, 0.12);
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .academic-card {
+      background: #fff;
+      border: 1px solid rgba(77, 30, 163, 0.08);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      margin-bottom: 25px;
+    }
+
+    .card-title-sub {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #1a1a2e;
+      border-bottom: 2px solid rgba(77, 30, 163, 0.08);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .abstract-text {
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: #444;
+      text-align: justify;
+    }
+
+    .keywords-list {
+      font-size: 0.92rem;
+      color: #555;
+    }
+
+    .references-wrap {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .references-wrap br {
+      display: block;
+      margin-bottom: 10px;
+      content: "";
+    }
+
+    .references-wrap a {
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .references-wrap a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sticky Sidebar */
+    .sidebar-sticky {
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-meta-card {
+      background: #fff;
+      border: 1px solid rgba(77, 30, 163, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .meta-label {
+      font-size: 0.72rem;
+      color: #888;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 0.88rem;
+      color: #222;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .btn-purple {
+      background: linear-gradient(135deg, var(--main-color), #7645fc);
+      color: white;
+      border: none;
+      transition: all 0.3s;
+    }
+
+    .btn-purple:hover {
+      background: linear-gradient(135deg, #3c1485, var(--main-color));
+      color: white;
+      box-shadow: 0 4px 15px rgba(77, 30, 163, 0.3);
+    }
+
+    .btn-download-pdf {
+      background: linear-gradient(135deg, #ff4e50, #f9d423);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 4px 15px rgba(255, 78, 80, 0.2);
+      transition: all 0.3s;
+    }
+
+    .btn-download-pdf:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 78, 80, 0.35);
+      color: #fff;
+    }
+
+    .spinner-wrap {
+      text-align: center;
+      padding: 100px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar placeholder -->
+  <div id="navbar-placeholder"></div>
+
+  <main class="details-wrapper">
+    <div class="container page-fade-in">
+
+      <!-- Breadcrumbs -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-size: 0.88rem; font-weight: 500;">
+          <li class="breadcrumb-item"><a href="index.html" style="color: var(--main-color);">Home</a></li>
+          <li class="breadcrumb-item"><a href="journals.html" style="color: var(--main-color);">Journals</a></li>
+          <li class="breadcrumb-item"><a href="#" id="breadcrumb-journal-code"
+              style="color: var(--main-color);">Journal</a></li>
+          <li class="breadcrumb-item active" id="breadcrumb-active-item" aria-current="page">Loading Article...</li>
+        </ol>
+      </nav>
+
+      <!-- Loading Spinner -->
+      <div id="loading-spinner" class="spinner-wrap">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="text-muted mt-3 fw-bold">Fetching article details and abstract...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-card" class="card p-5 text-center shadow-sm rounded-4 border-0 mb-4 d-none"
+        style="background-color: #fff5f5;">
+        <i class="fas fa-exclamation-triangle text-danger fs-1 mb-3"></i>
+        <h4 class="fw-bold text-danger mb-2">Failed to Load Article</h4>
+        <p class="text-muted mb-4" id="error-message">Unable to retrieve article abstract and references. Please try
+          again later.</p>
+        <button class="btn btn-danger py-2 px-4 rounded-5" onclick="window.location.reload()">
+          <i class="fas fa-sync me-1"></i> Retry
+        </button>
+      </div>
+
+      <!-- Main Body Grid -->
+      <div class="row g-4 d-none" id="article-content-grid">
+
+        <!-- Article Content area -->
+        <div class="col-lg-8">
+
+          <!-- Page Hero -->
+          <div class="p-4 p-md-5 mb-4 text-white paper-hero">
+            <div style="position: relative; z-index: 2;">
+              <span class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-5 mb-3"
+                style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase;">
+                Open Access Article
+              </span>
+              <h1 class="display-6 fw-bold mb-3" id="hero-title"
+                style="font-family: Outfit, sans-serif; line-height: 1.3;">
+                Article Title
+              </h1>
+              <p class="fs-5 fw-medium opacity-90 mb-0 text-warning" id="hero-authors">
+                Author Names
+              </p>
+            </div>
+          </div>
+
+          <!-- Abstract -->
+          <div class="academic-card">
+            <h5 class="card-title-sub">
+              <i class="fas fa-file-alt text-primary"></i> Abstract
+            </h5>
+            <div class="abstract-text" id="abstract-content">
+              Loading abstract content...
+            </div>
+          </div>
+
+          <!-- Keywords -->
+          <div class="academic-card">
+            <h5 class="card-title-sub">
+              <i class="fas fa-tags text-primary"></i> Keywords
+            </h5>
+            <div class="keywords-list" id="keywords-content">
+              Loading keywords...
+            </div>
+          </div>
+
+          <!-- Citation -->
+          <div class="academic-card">
+            <h5 class="card-title-sub">
+              <i class="fas fa-quote-right text-primary"></i> Citation
+            </h5>
+            <p class="small text-muted lh-base mb-0 p-3 rounded bg-light border-start border-primary border-4"
+              id="citation-content">
+              Loading citation formats...
+            </p>
+          </div>
+
+          <!-- References -->
+          <div class="academic-card">
+            <h5 class="card-title-sub">
+              <i class="fas fa-list-ol text-primary"></i> References
+            </h5>
+            <div class="references-wrap" id="references-content">
+              Loading references list...
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sticky Sidebar -->
+        <div class="col-lg-4">
+          <div class="sidebar-sticky">
+
+            <div class="sidebar-meta-card">
+              <h5 class="fw-bold mb-4 text-secondary pb-2 border-bottom" style="font-family: Outfit, sans-serif;">
+                Document Metadata</h5>
+
+              <div class="meta-label">Journal Code</div>
+              <div class="meta-value" id="meta-code">N/A</div>
+
+              <div class="meta-label">Publication details</div>
+              <div class="meta-value" id="meta-details">N/A</div>
+
+              <div class="meta-label">Access Model</div>
+              <div class="meta-value text-success"><i class="fas fa-lock-open me-1"></i> Open Access (CC BY-NC-ND)</div>
+
+              <!-- PDF Download Button -->
+              <div class="d-grid gap-2 mt-4">
+                <a href="#" id="btn-pdf-download" target="_blank"
+                  class="btn btn-download-pdf py-3 rounded-5 fs-6 text-center">
+                  <i class="fas fa-file-pdf me-2"></i> Download Full-Text PDF
+                </a>
+                <a href="#" id="btn-back-journal" class="btn btn-purple py-2.5 rounded-5 mt-2 text-center"
+                  style="font-size: 0.85rem;">
+                  <i class="fas fa-arrow-left me-1"></i> Return to Journal
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/journal-data.js"></script>
+
+  <script>
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        code: (params.get("code") || "IJCSE").toUpperCase(),
+        id: params.get("id")
+      };
+    }
+
+    function initPaperDetails() {
+      const { code, id } = getQueryParams();
+
+      // Setup breadcrumbs
+      const journalBtn = document.getElementById("breadcrumb-journal-code");
+      journalBtn.href = `journal-details.html?code=${code}`;
+      journalBtn.textContent = code;
+
+      if (!id) {
+        showError("Missing article identification details.");
+        return;
+      }
+
+      // Fetch from API
+      fetch(`/api/paper?code=${code}&id=${id}`)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          document.getElementById("loading-spinner").classList.add("d-none");
+          if (data.error) {
+            showError(data.error);
+            return;
+          }
+          renderPaperData(data, code, id);
+        })
+        .catch(err => {
+          console.error(err);
+          showError("Unable to establish communication with the papers repository. Please verify the URL parameters.");
+        });
+    }
+
+    function renderPaperData(data, code, id) {
+      document.getElementById("hero-title").textContent = data.title;
+      document.getElementById("hero-authors").textContent = data.authors;
+      document.getElementById("breadcrumb-active-item").textContent = data.title.substring(0, 45) + "...";
+      document.title = `${data.title} — ${code} | Saishnaa`;
+
+      document.getElementById("abstract-content").textContent = data.abstract || "No abstract available.";
+      document.getElementById("keywords-content").textContent = data.keywords || "No keywords specified.";
+      document.getElementById("citation-content").innerHTML = data.citation || "No citation details cataloged.";
+
+      const refsContent = document.getElementById("references-content");
+      if (data.references) {
+        refsContent.innerHTML = data.references;
+      } else {
+        refsContent.textContent = "No references listed.";
+      }
+
+      document.getElementById("meta-code").textContent = code;
+      document.getElementById("meta-details").textContent = data.metaText || "SSSL Research Article Catalog";
+
+      const pdfBtn = document.getElementById("btn-pdf-download");
+      if (data.pdfUrl) {
+        pdfBtn.href = data.pdfUrl;
+      } else {
+        pdfBtn.classList.add("disabled");
+        pdfBtn.textContent = "PDF Currently Unavailable";
+      }
+
+      document.getElementById("btn-back-journal").href = `journal-details.html?code=${code}`;
+
+      document.getElementById("article-content-grid").classList.remove("d-none");
+    }
+
+    function showError(msg) {
+      document.getElementById("loading-spinner").classList.add("d-none");
+      const errorCard = document.getElementById("error-card");
+      errorCard.classList.remove("d-none");
+      document.getElementById("error-message").textContent = msg;
+    }
+
+    window.addEventListener("DOMContentLoaded", initPaperDetails);
+  </script>
+</body>
+
+</html>

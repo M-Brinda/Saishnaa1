@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/services", "destination": "/our-services.html" },
+    { "source": "/services.html", "destination": "/our-services.html" },
+    { "source": "/courses", "destination": "/training-courses.html" },
+    { "source": "/courses.html", "destination": "/training-courses.html" },
+    { "source": "/projects", "destination": "/our-projects.html" },
+    { "source": "/projects.html", "destination": "/our-projects.html" },
+    { "source": "/journals", "destination": "/academic-journals.html" },
+    { "source": "/journals.html", "destination": "/academic-journals.html" },
+    { "source": "/contact", "destination": "/contact-us.html" },
+    { "source": "/contact.html", "destination": "/contact-us.html" }
+  ]
+}
+

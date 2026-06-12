@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="img/sai.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Join Our Dynamic Engineering Team | Careers at Saishnaa</title>
+    <meta name="description" content="Build the future of technology with us. Explore remote and on-site job openings for React developers, Python engineers, and cloud specialists." />
+    <meta name="keywords" content="IT jobs Erode, software developer vacancies, hire React developers Erode" />
+    <link rel="canonical" href="https://saishnaa.com/careers" />
+    
+    <!-- Geo-Targeting Metadata -->
+    <meta name="geo.region" content="IN-TN" />
+    <meta name="geo.placename" content="Erode" />
+    <meta name="geo.position" content="11.322977;77.682566" />
+    <meta name="ICBM" content="11.322977, 77.682566" />
+
+    <!-- CDNs & Web Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- Navbar placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <main class="flex-grow-1" style="text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;">
+      <div class="page-fade-in">
+        
+        <!-- Hero Section -->
+        <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white" style="
+          background: linear-gradient(135deg, rgba(77, 30, 163, 0.9) 0%, rgba(152, 241, 182, 0.85) 100%), url('img/1.jpg') center/cover fixed;
+          padding: 180px 20px 120px;
+          min-height: 40vh;
+          position: relative;
+          overflow: visible;
+        ">
+          <div class="container" style="position: relative; z-index: 1;">
+            <h1 class="display-4 fw-bold mb-3" style="font-family: Outfit, sans-serif;">Careers</h1>
+            <p class="fs-5 max-w-700 opacity-90 mx-auto" style="max-width: 650px;">
+              Discover exceptional opportunities and build the future of software and AI solutions with us!
+            </p>
+          </div>
+        </section>
+
+        <!-- Company values intro -->
+        <section class="py-5" style="background-color: #ffffff;">
+          <div class="container py-4 text-center">
+            <h2 class="section-title">Join Our Growing Team</h2>
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <p class="lead text-muted mb-4" style="font-size: 1.08rem; line-height: 1.8;">
+                  At Saishnaa, we believe in nurturing talent, fostering continuous learning, and offering opportunities for massive professional growth. We provide a highly collaborative and inclusive environment where everyone's voice is valued.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Wave Divider -->
+        <svg class="wave-divider" viewBox="0 0 1200 60" preserveAspectRatio="none" style="display: block; width: 100%; height: 60px; margin-top: -2px;">
+          <path d="M 0,25 Q 300,0 600,25 T 1200,25 L 1200,60 L 0,60 Z" fill="white" />
+        </svg>
+
+        <!-- Open Positions Section -->
+        <section class="py-5" style="background-color: #f4f5f8;" id="openings">
+          <div class="container">
+            <div class="text-center mb-5">
+              <h2 class="section-title mb-2">Open Positions</h2>
+              <p class="text-muted small">Find your perfect technical role and apply in less than 2 minutes.</p>
+            </div>
+
+            <!-- Search & Filter Controls -->
+            <div class="row g-3 justify-content-center mb-5 align-items-center">
+              <div class="col-md-5">
+                <div class="input-group glass-panel shadow-sm" style="border-radius: 30px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06);">
+                  <span class="input-group-text bg-white border-0 ps-3 text-muted">
+                    <i data-lucide="search" style="width: 18px; height: 18px;"></i>
+                  </span>
+                  <input type="text" id="job-search-input" class="form-control border-0 py-3 ps-2" placeholder="Search by role or skills..." style="outline: none; box-shadow: none;" />
+                </div>
+              </div>
+
+              <div class="col-md-7 d-flex justify-content-md-end justify-content-center flex-wrap gap-2" id="dept-tabs-container">
+                <!-- Departments rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Jobs Grid -->
+            <div class="row g-4 justify-content-stretch" id="jobs-grid-container">
+              <!-- Jobs rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Apply Job Modal Overlay -->
+        <div class="modal align-items-center justify-content-center" id="career-modal" style="display: none; background-color: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1200; overflow-y: auto;">
+          <div class="modal-dialog p-4" style="max-width: 520px; width: 90%; margin: 30px auto;" id="career-modal-dialog">
+            <div class="modal-content border-0 p-4 rounded-4 shadow-lg bg-white text-start" style="animation: chatbotOpen 0.4s var(--cubic-bezier);">
+              
+              <!-- Form Block -->
+              <div id="career-form-block">
+                <form id="job-application-form">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h4 class="fw-bold mb-1" style="color: var(--main-color); font-family: Outfit, sans-serif;">Apply for Position</h4>
+                      <small class="text-secondary fw-semibold" id="applied-job-title-header"></small>
+                    </div>
+                    <button type="button" class="btn-close" id="career-modal-close-btn" style="outline: none; box-shadow: none;"></button>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold text-muted">Full Name</label>
+                    <input type="text" class="form-control" id="career-form-name" required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold text-muted">Email Address</label>
+                    <input type="email" class="form-control" id="career-form-email" required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold text-muted">Phone Number</label>
+                    <input type="tel" class="form-control" id="career-form-phone" required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold text-muted">Short Cover Message</label>
+                    <textarea class="form-control" id="career-form-cover" rows="3"></textarea>
+                  </div>
+
+                  <div class="mb-3 text-start">
+                    <label class="form-label small fw-semibold text-muted d-block mb-2">Preferred Application Channel (Instant Execution)</label>
+                    <div class="d-flex gap-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="careerChannel" id="channelWa" value="WhatsApp" checked />
+                        <label class="form-check-label small fw-semibold text-secondary" htmlFor="channelWa">
+                          WhatsApp Submission
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="careerChannel" id="channelMail" value="Email" />
+                        <label class="form-check-label small fw-semibold text-secondary" htmlFor="channelMail">
+                          Email Submission
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Resume attachment file selection mock UI -->
+                  <div class="mb-4 p-3 rounded-3 bg-light d-flex align-items-center gap-3" id="resume-upload-trigger" style="border: 1.5px dashed var(--main-color); cursor: pointer; backgroundColor: rgba(77, 30, 163, 0.02); transition: all 0.3s ease;">
+                    <input type="file" id="career-resume-input" accept=".pdf,.doc,.docx" style="display: none;" required />
+                    <i data-lucide="file-text" id="resume-icon" class="text-secondary" style="width: 24px; height: 24px;"></i>
+                    <div class="text-start flex-grow-1">
+                      <h6 class="mb-0 small fw-bold text-muted" id="resume-label">Upload Resume (PDF, DOC, DOCX)</h6>
+                      <small class="text-muted" style="font-size: 0.75rem;" id="resume-subtext">Click here to select your resume</small>
+                    </div>
+                    <button type="button" class="btn-close d-none" id="resume-remove-btn" style="fontSize: 0.8rem; outline: none; box-shadow: none;"></button>
+                  </div>
+
+                  <button type="submit" class="btn btn-purple w-100 py-3 rounded-pill">
+                    Submit Application & Launch Client <i data-lucide="send" class="ms-1" style="width: 14px; height: 14px;"></i>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Success/Action Block -->
+              <div id="career-success-block" class="text-center py-4 d-none animate__animated animate__fadeIn">
+                <i data-lucide="check-circle" class="text-success mb-3" style="width: 64px; height: 64px;"></i>
+                <h4 class="fw-bold mb-2" style="color: var(--main-color); font-family: Outfit, sans-serif;">Application Dispatched!</h4>
+                <p class="text-muted px-3 small mb-4" style="line-height: 1.6;">
+                  Your application for the <strong id="success-job-title"></strong> position has been saved locally. We have automatically opened your preferred channel (<strong id="success-channel-name"></strong>) to send your details.
+                </p>
+                <p class="text-muted px-3 small mb-4">
+                  If the redirection was blocked by your browser, please trigger the application manually:
+                </p>
+
+                <div class="d-flex flex-column gap-2.5 w-100 px-3">
+                  <a id="career-manual-link-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn text-white w-100 py-3 rounded-pill d-flex align-items-center justify-content-center gap-2 fw-bold shadow-sm" style="background-color: #25D366; border: none; transition: all 0.3s; fontSize: 0.95rem;">
+                    <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i> Launch Action Manually
+                  </a>
+                </div>
+
+                <button type="button" class="btn btn-link btn-sm text-secondary w-100 mt-4 text-decoration-none small fw-semibold" id="career-success-close-btn">
+                  Close Window
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/components.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+      const jobs = [
+        {
+          id: 1,
+          title: "Senior Software Developer",
+          dept: "Engineering",
+          location: "Remote / On-site Erode",
+          skills: "React, Node.js, Python, PostgreSQL",
+          desc: "Develop and maintain robust web and mobile applications, collaborate with cross-functional product teams, and implement coding best practices."
+        },
+        {
+          id: 2,
+          title: "UI/UX Experience Designer",
+          dept: "Design",
+          location: "On-site Thindal",
+          skills: "Figma, Adobe XD, Responsive Layouts",
+          desc: "Design stunning user interfaces for client web and mobile apps, establishing comprehensive design systems and conducting UX testing."
+        },
+        {
+          id: 3,
+          title: "Digital Marketing Manager",
+          dept: "Marketing",
+          location: "Remote / Hybrid",
+          skills: "SEO, Performance Ads, Google Analytics",
+          desc: "Oversee digital marketing campaigns, social media outreach, SEO growth paths, and brand awareness programs to drive business leads."
+        },
+        {
+          id: 4,
+          title: "Senior Data Scientist",
+          dept: "Engineering",
+          location: "Remote",
+          skills: "Python, PyTorch, SQL, Recommendation Models",
+          desc: "Analyze complex business datasets, develop predictive machine learning frameworks, and build intelligent recommendation systems."
+        },
+        {
+          id: 5,
+          title: "Cloud & DevOps Engineer",
+          dept: "Engineering",
+          location: "Hybrid Erode",
+          skills: "AWS, Docker, Kubernetes, CI/CD",
+          desc: "Implement continuous integration pipelines, manage hybrid cloud instances, automate server audit checks, and ensure platform uptime."
+        },
+        {
+          id: 6,
+          title: "Agile Product Manager",
+          dept: "Management",
+          location: "On-site Erode",
+          skills: "Scrum, Product Strategy, User Research",
+          desc: "Define product visions, write clear technical requirements, and coordinate sprint planning between design and development teams."
+        }
+      ];
+
+      const departments = ["All", "Engineering", "Design", "Marketing", "Management"];
+      let selectedDept = "All";
+      let searchTerm = "";
+      let selectedJob = null;
+      let resumeFileObj = null;
+
+      // Render filter tabs
+      const tabsContainer = document.getElementById("dept-tabs-container");
+      function renderTabs() {
+        tabsContainer.innerHTML = "";
+        departments.forEach(dept => {
+          const btn = document.createElement("button");
+          btn.className = "btn px-3 py-2 fw-semibold btn-sm transition-all";
+          btn.style.borderRadius = "20px";
+          btn.style.transition = "all 0.3s";
+          
+          if (selectedDept === dept) {
+            btn.style.backgroundColor = "var(--main-color)";
+            btn.style.color = "white";
+            btn.style.border = "none";
+          } else {
+            btn.style.backgroundColor = "white";
+            btn.style.color = "var(--main-color)";
+            btn.style.border = "1px solid rgba(77, 30, 163, 0.15)";
+          }
+          
+          btn.textContent = dept;
+          btn.addEventListener("click", () => {
+            selectedDept = dept;
+            renderTabs();
+            renderJobs();
+          });
+          
+          tabsContainer.appendChild(btn);
+        });
+      }
+
+      // Render Job Listings
+      const jobsGrid = document.getElementById("jobs-grid-container");
+      function renderJobs() {
+        jobsGrid.innerHTML = "";
+        
+        const filtered = jobs.filter(job => {
+          const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                                job.skills.toLowerCase().includes(searchTerm.toLowerCase());
+          const matchesDept = selectedDept === "All" || job.dept === selectedDept;
+          return matchesSearch && matchesDept;
+        });
+
+        if (filtered.length === 0) {
+          jobsGrid.innerHTML = `
+            <div class="col-12 py-5 text-center text-muted glass-panel rounded-4">
+              <p class="fs-5 mb-0">No job openings found matching your filters.</p>
+            </div>
+          `;
+          return;
+        }
+
+        filtered.forEach(job => {
+          const card = document.createElement("div");
+          card.className = "col-lg-4 col-md-6 d-flex animate__animated animate__fadeIn";
+          card.style.animationDelay = "0.05s";
+          card.innerHTML = `
+            <div class="interactive-card p-4 d-flex flex-column text-start w-100 bg-white" style="position: relative;">
+              <span class="badge bg-purple position-absolute" style="background-color: rgba(77, 30, 163, 0.1); color: var(--main-color); border-radius: 20px; font-size: 0.72rem; padding: 6px 12px; border: 1px solid rgba(77,30,163,0.15); top: 15px; right: 15px;">
+                ${job.dept}
+              </span>
+
+              <h5 class="fw-bold mb-2 mt-3" style="color: var(--main-color); font-family: Outfit, sans-serif;">${job.title}</h5>
+
+              <p class="text-secondary small mb-3 fw-medium">
+                <i data-lucide="map-pin" class="text-warning" style="width: 14px; height: 14px;"></i> ${job.location}
+              </p>
+
+              <p class="text-muted small mb-4 flex-grow-1" style="line-height: 1.6;">${job.desc}</p>
+
+              <div class="mb-4 pt-3 border-top">
+                <h6 class="fw-semibold text-muted small mb-2"><i data-lucide="code" style="width: 14px; height: 14px;"></i> Key Skills Required:</h6>
+                <p class="text-secondary small mb-0 fw-medium">${job.skills}</p>
+              </div>
+
+              <button class="btn btn-purple py-2.5 w-100 rounded-pill mt-auto apply-now-btn">Apply Now <i data-lucide="send" style="width: 14px; height: 14px;"></i></button>
+            </div>
+          `;
+          
+          card.querySelector(".apply-now-btn").addEventListener("click", () => openApplyModal(job));
+
+          jobsGrid.appendChild(card);
+        });
+
+        if (window.lucide && typeof window.lucide.createIcons === "function") {
+          window.lucide.createIcons();
+        }
+      }
+
+      // Application Modal logic
+      const careerModal = document.getElementById("career-modal");
+      const resumeInput = document.getElementById("career-resume-input");
+      const removeBtn = document.getElementById("resume-remove-btn");
+
+      function openApplyModal(job) {
+        selectedJob = job;
+        document.getElementById("applied-job-title-header").textContent = `${job.title} (${job.dept})`;
+        document.getElementById("job-application-form").reset();
+        
+        // Reset file state
+        resumeFileObj = null;
+        const icon = document.getElementById("resume-icon");
+        icon.className = "text-secondary";
+        icon.setAttribute("data-lucide", "file-text");
+        document.getElementById("resume-label").textContent = "Upload Resume (PDF, DOC, DOCX)";
+        document.getElementById("resume-label").className = "mb-0 small fw-bold text-muted";
+        document.getElementById("resume-subtext").textContent = "Click here to select your resume";
+        removeBtn.classList.add("d-none");
+        
+        document.getElementById("career-form-block").classList.remove("d-none");
+        document.getElementById("career-success-block").classList.add("d-none");
+
+        careerModal.style.display = "block";
+        document.body.style.overflow = "hidden";
+
+        if (window.lucide && typeof window.lucide.createIcons === "function") {
+          window.lucide.createIcons();
+        }
+      }
+
+      function closeApplyModal() {
+        careerModal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+
+      document.getElementById("career-modal-close-btn").addEventListener("click", closeApplyModal);
+      document.getElementById("career-success-close-btn").addEventListener("click", closeApplyModal);
+
+      // Trigger file selector on card wrapper click
+      document.getElementById("resume-upload-trigger").addEventListener("click", () => {
+        resumeInput.click();
+      });
+
+      // Handle resume file changes
+      resumeInput.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files[0]) {
+          const file = e.target.files[0];
+          resumeFileObj = file;
+
+          const icon = document.getElementById("resume-icon");
+          icon.className = "text-success";
+          icon.setAttribute("data-lucide", "file-text");
+          document.getElementById("resume-label").textContent = `✓ ${file.name}`;
+          document.getElementById("resume-label").className = "mb-0 small fw-bold text-success";
+          document.getElementById("resume-subtext").textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB • Ready to attach`;
+          removeBtn.classList.remove("d-none");
+
+          if (window.lucide && typeof window.lucide.createIcons === "function") {
+            window.lucide.createIcons();
+          }
+        }
+      });
+
+      // Remove resume handler
+      removeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        resumeInput.value = "";
+        resumeFileObj = null;
+
+        const icon = document.getElementById("resume-icon");
+        icon.className = "text-secondary";
+        icon.setAttribute("data-lucide", "file-text");
+        document.getElementById("resume-label").textContent = "Upload Resume (PDF, DOC, DOCX)";
+        document.getElementById("resume-label").className = "mb-0 small fw-bold text-muted";
+        document.getElementById("resume-subtext").textContent = "Click here to select your resume";
+        removeBtn.classList.add("d-none");
+
+        if (window.lucide && typeof window.lucide.createIcons === "function") {
+          window.lucide.createIcons();
+        }
+      });
+
+      // Form submission logic
+      document.getElementById("job-application-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        if (!resumeFileObj) {
+          alert("Please upload your Resume file (PDF, DOC, or DOCX) before submitting.");
+          return;
+        }
+
+        const name = document.getElementById("career-form-name").value.trim();
+        const email = document.getElementById("career-form-email").value.trim();
+        const phone = document.getElementById("career-form-phone").value.trim();
+        const cover = document.getElementById("career-form-cover").value.trim();
+        const channel = document.querySelector('input[name="careerChannel"]:checked').value;
+
+        if (name && email && phone) {
+          // Add details to LocalStorage
+          const applicants = JSON.parse(localStorage.getItem("saishnaa_applicants") || "[]");
+          applicants.push({
+            jobTitle: selectedJob.title,
+            applicant: {
+              name,
+              email,
+              phone,
+              cover,
+              channel,
+              resumeName: resumeFileObj.name
+            },
+            date: new Date().toLocaleString()
+          });
+          localStorage.setItem("saishnaa_applicants", JSON.stringify(applicants));
+
+          const resumeNameStr = resumeFileObj.name;
+          
+          // Compose Message templates
+          const careerWaText = `Hi Saishnaa Team, I am applying for the *${selectedJob.title}* position.
+
+==================================================
+💼 POSITION: ${selectedJob.title}
+==================================================
+👤 APPLICANT DETAILS:
+--------------------------------------------------
+• Full Name: ${name}
+• Contact Phone: ${phone}
+• Contact Email: ${email}
+• Resume File: ${resumeNameStr}
+📝 Cover Letter / Brief Bio:
+--------------------------------------------------
+${cover || "N/A"}
+==================================================
+Please find my Resume attached below.`;
+
+          const careerEmailSubject = `Job Application: ${selectedJob.title} - ${name}`;
+
+          const careerEmailBody = `==================================================
+📩 NEW JOB APPLICATION - SAISHNAA ACADEMY
+==================================================
+💼 Position Applied: ${selectedJob.title}
+👤 Applicant Details:
+--------------------------------------------------
+• Full Name: ${name}
+• Contact Phone: ${phone}
+• Contact Email: ${email}
+• Resume File: ${resumeNameStr}
+📝 Cover Letter / Brief Bio:
+--------------------------------------------------
+${cover || "N/A"}
+==================================================
+📌 IMPORTANT NOTE:
+Please attach your PDF Resume "${resumeNameStr}" to this draft before sending.
+==================================================`;
+
+          // Clipboard copies for cross-platform fallback
+          const copyContent = channel === "WhatsApp" ? careerWaText : careerEmailBody;
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(copyContent).catch(() => {});
+          }
+
+          // Handle link redirections
+          let manualUrl = "";
+          let newTab = null;
+
+          if (channel === "WhatsApp") {
+            manualUrl = `https://wa.me/919790155384?text=${encodeURIComponent(careerWaText)}`;
+            newTab = window.open("", "_blank");
+          } else {
+            manualUrl = `mailto:saishnaa@gmail.com?subject=${encodeURIComponent(careerEmailSubject)}&body=${encodeURIComponent(careerEmailBody)}`;
+          }
+
+          // Transition Modal UI
+          document.getElementById("success-job-title").textContent = selectedJob.title;
+          document.getElementById("success-channel-name").textContent = channel;
+          
+          const manualBtn = document.getElementById("career-manual-link-btn");
+          manualBtn.href = manualUrl;
+          if (channel === "WhatsApp") {
+            manualBtn.className = "btn text-white w-100 py-3 rounded-pill d-flex align-items-center justify-content-center gap-2 fw-bold shadow-sm";
+            manualBtn.style.backgroundColor = "#25D366";
+            manualBtn.innerHTML = `<i data-lucide="message-circle" style="width: 18px; height: 18px;"></i> Apply via WhatsApp Manually`;
+          } else {
+            manualBtn.className = "btn btn-purple w-100 py-3 rounded-pill d-flex align-items-center justify-content-center gap-2 fw-bold text-white shadow-sm";
+            manualBtn.style.backgroundColor = "";
+            manualBtn.innerHTML = `<i data-lucide="mail" style="width: 18px; height: 18px;"></i> Apply via Email Manually`;
+          }
+
+          document.getElementById("career-form-block").classList.add("d-none");
+          document.getElementById("career-success-block").classList.remove("d-none");
+
+          if (window.lucide && typeof window.lucide.createIcons === "function") {
+            window.lucide.createIcons();
+          }
+
+          setTimeout(() => {
+            if (channel === "WhatsApp") {
+              if (newTab) {
+                newTab.location.href = manualUrl;
+              } else {
+                window.open(manualUrl, "_blank");
+              }
+            } else {
+              window.location.href = manualUrl;
+            }
+          }, 1000);
+        }
+      });
+
+      // Hook Search filter
+      document.getElementById("job-search-input").addEventListener("input", (e) => {
+        searchTerm = e.target.value;
+        renderJobs();
+      });
+
+      // Initial Calls
+      renderTabs();
+      renderJobs();
+
+      // Initialize Lucide Icons
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

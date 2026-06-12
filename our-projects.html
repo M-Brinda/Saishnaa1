@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="img/sai.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Our Portfolio & Innovation Showcases | Saishnaa Software Solutions</title>
+    <meta name="description" content="Discover high-performance web systems, enterprise portals, AI automations, and custom mobile apps developed by Saishnaa Software Solutions." />
+    <meta name="keywords" content="Saishnaa portfolio, software projects, React cases, custom apps portfolio" />
+    <link rel="canonical" href="https://saishnaa.com/projects" />
+    
+    <!-- Geo-Targeting Metadata -->
+    <meta name="geo.region" content="IN-TN" />
+    <meta name="geo.placename" content="Erode" />
+    <meta name="geo.position" content="11.322977;77.682566" />
+    <meta name="ICBM" content="11.322977, 77.682566" />
+
+    <!-- CDNs & Web Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- Navbar placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <main class="flex-grow-1" style="text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;">
+      <div class="page-fade-in">
+        
+        <!-- Hero Section -->
+        <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white" style="
+          background: linear-gradient(135deg, rgba(77, 30, 163, 0.9) 0%, rgba(152, 241, 182, 0.8) 100%), url('img/1.jpg') center/cover fixed;
+          padding: 180px 20px 140px;
+          min-height: 40vh;
+          position: relative;
+          overflow: hidden;
+        ">
+          <div class="container" style="position: relative; z-index: 1;">
+            <h1 class="display-4 fw-bold mb-3" style="font-family: Outfit, sans-serif;">Our Projects</h1>
+            <p class="fs-5 max-w-700 opacity-90 mx-auto" style="max-width: 650px;">
+              Showcasing innovation, software craftsmanship, and impactful digital transformations.
+            </p>
+          </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="py-5" style="background-color: #f9fafc;">
+          <div class="container py-4">
+            
+            <div class="text-center mb-5">
+              <h2 class="section-title">Featured Work</h2>
+              <p class="text-muted mt-2 mx-auto" style="max-width: 550px;">
+                Explore how we help global brands and regional leaders launch secure, scalable digital architectures.
+              </p>
+            </div>
+
+            <!-- Categories Tabs -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-5" id="project-tabs-container">
+              <!-- Buttons rendered dynamically -->
+            </div>
+
+            <!-- Projects Grid list -->
+            <div class="row g-4 justify-content-center" id="projects-grid-container">
+              <!-- Projects rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Call to action section -->
+        <section class="py-5 text-white" style="
+          background: linear-gradient(135deg, var(--main-color), var(--secondary-color));
+          position: relative;
+        ">
+          <div class="container py-4 text-center">
+            <h2 class="fw-bold mb-3" style="font-family: Outfit, sans-serif;">Have an Idea for a Custom Digital Solution?</h2>
+            <p class="fs-5 max-w-700 opacity-90 mx-auto mb-4" style="max-width: 600px;">
+              Our engineering team is ready to analyze your challenges and build custom systems that accelerate your growth.
+            </p>
+            <a href="contact.html" class="btn btn-warning btn-lg text-dark fw-bold px-4 py-2" style="border-radius: 50px;">
+              Book Consultation Call
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/components.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+      const projectList = [
+        {
+          id: 1,
+          title: "Retail AI Analytics",
+          category: "AI & ML",
+          description: "An intelligent retail forecasting system using custom machine learning algorithms for high-accuracy consumer demand prediction and automated inventory stock optimization.",
+          tags: ["AI/ML", "Data Analytics", "Retail"],
+          image: "img/retails.jpg"
+        },
+        {
+          id: 2,
+          title: "Smart Healthcare App",
+          category: "E-commerce & IoT",
+          description: "A secure cross-platform mobile app enabling continuous remote patient monitoring, IoT medical sensor syncs, and seamless telemedicine doctor-patient scheduling.",
+          tags: ["Mobile", "Healthcare", "IoT"],
+          image: "img/he1.jpg"
+        },
+        {
+          id: 3,
+          title: "Finance Cloud Migration",
+          category: "Cloud & Security",
+          description: "Successfully architected and transitioned a leading wealth firm's legacy databases to a secure, decentralized hybrid cloud with zero business downtime and automated SOC2 audits.",
+          tags: ["Cloud", "Security", "Finance"],
+          image: "img/CloudMigration.jpg"
+        },
+        {
+          id: 4,
+          title: "Enterprise E-commerce",
+          category: "E-commerce & IoT",
+          description: "Built a high-performance commerce portal designed to support 10,000+ concurrent customers, powered by a customized AI recommend system and express checkout pipelines.",
+          tags: ["E-commerce", "Scalability", "AI Search"],
+          image: "img/e1.png"
+        },
+        {
+          id: 5,
+          title: "Smart City IoT Dashboard",
+          category: "E-commerce & IoT",
+          description: "An interactive, web-based city monitoring system aggregating real-time air quality, grid status, and emergency response telemetry from thousands of hardware sensors.",
+          tags: ["IoT", "Data Visualization", "Smart Cities"],
+          image: "img/Data1.png"
+        },
+        {
+          id: 6,
+          title: "Blockchain Supply Chain",
+          category: "Cloud & Security",
+          description: "Developed a distributed ledger supply chain protocol enabling end-to-end trace logs for high-value logistics, safeguarding products and eliminating counterfeiting risks.",
+          tags: ["Blockchain", "Logistics", "Security"],
+          image: "img/cy1.jpg"
+        }
+      ];
+
+      const categories = ["All", "AI & ML", "Cloud & Security", "E-commerce & IoT"];
+      let activeCategory = "All";
+
+      const tabsContainer = document.getElementById("project-tabs-container");
+      const projectsContainer = document.getElementById("projects-grid-container");
+
+      function renderTabs() {
+        tabsContainer.innerHTML = "";
+        categories.forEach(cat => {
+          const btn = document.createElement("button");
+          btn.className = "btn px-4 py-2 fw-semibold";
+          btn.style.borderRadius = "30px";
+          btn.style.transition = "all 0.3s ease";
+          
+          if (activeCategory === cat) {
+            btn.style.backgroundColor = "var(--main-color)";
+            btn.style.color = "white";
+            btn.style.border = "none";
+            btn.style.boxShadow = "0 4px 15px rgba(77, 30, 163, 0.3)";
+          } else {
+            btn.style.backgroundColor = "white";
+            btn.style.color = "var(--main-color)";
+            btn.style.border = "1px solid rgba(77, 30, 163, 0.2)";
+            btn.style.boxShadow = "none";
+          }
+          
+          btn.textContent = cat;
+          btn.addEventListener("click", () => {
+            activeCategory = cat;
+            renderTabs();
+            renderProjects();
+          });
+          
+          tabsContainer.appendChild(btn);
+        });
+      }
+
+      function renderProjects() {
+        projectsContainer.innerHTML = "";
+        
+        const filtered = activeCategory === "All" 
+          ? projectList 
+          : projectList.filter(proj => proj.category === activeCategory);
+
+        if (filtered.length === 0) {
+          projectsContainer.innerHTML = `
+            <div class="col-12 py-5 text-center text-muted">
+              <p class="fs-5">No projects found in this category.</p>
+            </div>
+          `;
+          return;
+        }
+
+        filtered.forEach((project, idx) => {
+          const card = document.createElement("div");
+          card.className = "col-lg-4 col-md-6 animate__animated animate__fadeIn";
+          card.style.animationDelay = `${idx * 0.05}s`;
+          
+          let tagsHTML = "";
+          project.tags.forEach(t => {
+            tagsHTML += `
+              <span class="badge" style="background-color: rgba(118, 69, 252, 0.08); color: var(--secondary-color); borderRadius: 20px; fontSize: 0.75rem; fontWeight: 500; padding: 6px 12px; border: 1px solid rgba(118, 69, 252, 0.15);">${t}</span>
+            `;
+          });
+
+          card.innerHTML = `
+            <div class="interactive-card h-100 d-flex flex-column text-start" style="position: relative;">
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--accent-light), var(--secondary-color));"></div>
+              
+              <div style="position: relative; height: 220px; overflow: hidden;">
+                <img src="${project.image}" alt="${project.title}" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" />
+                <span class="badge bg-secondary position-absolute shadow-sm py-2 px-3 text-white" style="background-color: rgba(77, 30, 163, 0.85); backdrop-filter: blur(4px); border-radius: 30px; fontSize: 0.75rem; fontWeight: 600; bottom: 15px; right: 15px; z-index: 2; border: 1px solid rgba(255,255,255,0.2);">${project.category}</span>
+              </div>
+              
+              <div class="card-body p-4 d-flex flex-column flex-grow-1">
+                <h5 class="fw-bold mb-3" style="color: var(--main-color); font-family: Outfit, sans-serif;">${project.title}</h5>
+                <p class="card-text text-muted mb-4 flex-grow-1" style="font-size: 0.92rem; line-height: 1.6;">${project.description}</p>
+                
+                <div class="d-flex flex-wrap gap-2 mt-auto">
+                  ${tagsHTML}
+                </div>
+              </div>
+            </div>
+          `;
+
+          // Add image zoom events
+          const img = card.querySelector(".project-img");
+          img.addEventListener("mouseenter", () => {
+            img.style.transform = "scale(1.08)";
+          });
+          img.addEventListener("mouseleave", () => {
+            img.style.transform = "scale(1)";
+          });
+
+          projectsContainer.appendChild(card);
+        });
+      }
+
+      // Initial render call
+      renderTabs();
+      renderProjects();
+
+      // Initialize Lucide Icons
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

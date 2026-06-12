@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vercel Deployment Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0a0a;
+      color: #eaeaea;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #121212;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 30px;
+      width: 500px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #status {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 20px;
+      word-break: break-all;
+    }
+    .btn {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #ccc;
+    }
+    #result {
+      margin-top: 25px;
+      text-align: left;
+      display: none;
+    }
+    .link-group {
+      margin-bottom: 10px;
+    }
+    a {
+      color: #0070f3;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Vercel Project Deployment</h1>
+    <div id="status">Ready to deploy. Fetching files...</div>
+    <div id="result">
+      <div class="link-group">
+        <strong>Deployment URL:</strong> <br>
+        <a id="deploy-url" href="#" target="_blank"></a>
+      </div>
+      <div class="link-group" style="margin-top: 15px;">
+        <strong>Inspector URL:</strong> <br>
+        <a id="inspector-url" href="#" target="_blank"></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const statusDiv = document.getElementById('status');
+    const resultDiv = document.getElementById('result');
+    const deployUrlLink = document.getElementById('deploy-url');
+    const inspectorUrlLink = document.getElementById('inspector-url');
+
+    const token = 'vcp_1kafxTMDYosR7eT6gQGspCHai9jFSMG4Eado2Fds9FiKpEXKPh3b3Kpa';
+    const orgId = 'team_zJMtw81kcz2U2rqPKGERNfQ8';
+    const projectName = 'saishnaa-uu7d';
+
+    async function startDeployment() {
+      try {
+        statusDiv.innerText = 'Fetching files from local server...';
+        const filesRes = await fetch('/files');
+        if (!filesRes.ok) throw new Error('Failed to fetch files from local server');
+        const filesData = await filesRes.json();
+        
+        statusDiv.innerText = `Found ${filesData.files.length} files. Reading configuration...`;
+        const vercelConfig = filesData.config || {};
+
+        statusDiv.innerText = 'Preparing payload...';
+        const filesPayload = filesData.files.map(f => ({
+          file: f.file,
+          data: f.content,
+          encoding: 'base64'
+        }));
+
+        const payload = {
+          name: projectName,
+          cleanUrls: vercelConfig.cleanUrls,
+          rewrites: vercelConfig.rewrites,
+          redirects: vercelConfig.redirects,
+          headers: vercelConfig.headers,
+          files: filesPayload,
+          projectSettings: {
+            framework: null
+          }
+        };
+
+        statusDiv.innerText = 'Uploading and deploying to Vercel (this may take a moment due to image sizes)...';
+        const vercelRes = await fetch(`https://api.vercel.com/v13/deployments?teamId=${orgId}`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const vercelData = await vercelRes.json();
+        if (!vercelRes.ok) {
+          throw new Error(vercelData.error ? vercelData.error.message : 'Vercel deployment failed');
+        }
+
+        statusDiv.innerHTML = '<span style="color: #00ff00; font-weight: bold;">SUCCESS: Deployment successful!</span>';
+        deployUrlLink.href = 'https://' + vercelData.url;
+        deployUrlLink.innerText = 'https://' + vercelData.url;
+        inspectorUrlLink.href = 'https://' + vercelData.inspectorUrl;
+        inspectorUrlLink.innerText = 'https://' + vercelData.inspectorUrl;
+        resultDiv.style.display = 'block';
+
+        // Notify local server of completion
+        fetch(`/done?url=${encodeURIComponent('https://' + vercelData.url)}&inspector=${encodeURIComponent('https://' + vercelData.inspectorUrl)}`);
+
+      } catch (err) {
+        statusDiv.innerHTML = `<span style="color: #ff3333; font-weight: bold;">ERROR: ${err.message}</span>`;
+        fetch(`/error?msg=${encodeURIComponent(err.message)}`);
+      }
+    }
+
+    startDeployment();
+  </script>
+</body>
+</html>

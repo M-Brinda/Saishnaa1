@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="img/sai.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>Academic Journals | Saishnaa Software Solutions</title>
+  <meta name="description"
+    content="Browse and access SSSL International Open Access Journals indexed in Scopus. Explore engineering, science, medical and social science journals." />
+  <meta name="keywords"
+    content="SSSL journals, Scopus indexed journals, open access journals, engineering journals, Saishnaa" />
+  <link rel="canonical" href="https://saishnaa.com/journals" />
+
+  <!-- Geo-Targeting Metadata -->
+  <meta name="geo.region" content="IN-TN" />
+  <meta name="geo.placename" content="Erode" />
+  <meta name="geo.position" content="11.322977;77.682566" />
+  <meta name="ICBM" content="11.322977, 77.682566" />
+
+  <!-- CDNs & Web Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+
+  <style>
+    /* ===== Journal Viewer Overlay ===== */
+    #journal-viewer-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 5, 30, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      flex-direction: column;
+      animation: fadeInOverlay 0.3s ease;
+    }
+
+    #journal-viewer-overlay.active {
+      display: flex;
+    }
+
+    @keyframes fadeInOverlay {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    #journal-viewer-topbar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #4d1ea3 0%, #7645fc 100%);
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(77, 30, 163, 0.4);
+    }
+
+    #journal-viewer-topbar .journal-title-bar {
+      flex: 1;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #journal-viewer-topbar .btn-viewer-close {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #journal-viewer-topbar .btn-viewer-close:hover {
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    #journal-viewer-topbar .btn-open-new {
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      color: #4d1ea3;
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    #journal-viewer-topbar .btn-open-new:hover {
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(77, 30, 163, 0.25);
+    }
+
+    #journal-viewer-frame-wrap {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #f4f5f8;
+    }
+
+    #journal-viewer-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f4f0ff 0%, #e8f4ff 100%);
+      z-index: 10;
+      gap: 16px;
+    }
+
+    #journal-viewer-loading .spinner-ring {
+      width: 56px;
+      height: 56px;
+      border: 5px solid rgba(77, 30, 163, 0.15);
+      border-top-color: #4d1ea3;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #journal-viewer-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    #journal-viewer-blocked {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #f4f0ff 0%, #e8f4ff 100%);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+      z-index: 11;
+    }
+
+    #journal-viewer-blocked.show {
+      display: flex;
+    }
+
+    /* ===== Journal Cards ===== */
+    .journal-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(77, 30, 163, 0.07);
+      overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid rgba(77, 30, 163, 0.08);
+      cursor: pointer;
+    }
+
+    .journal-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(77, 30, 163, 0.15);
+      border-color: rgba(77, 30, 163, 0.2);
+    }
+
+    .journal-card .card-banner {
+      height: 110px;
+      overflow: hidden;
+      background: #eee;
+      position: relative;
+    }
+
+    .journal-card .card-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+
+    .journal-card:hover .card-banner img {
+      opacity: 1;
+    }
+
+    .journal-card .card-banner .scopus-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #4d1ea3;
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .journal-card .card-body-inner {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .journal-card h6 {
+      font-weight: 700;
+      color: #1a1a2e;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .journal-card .code-badge {
+      display: inline-block;
+      background: rgba(77, 30, 163, 0.08);
+      color: #4d1ea3;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(77, 30, 163, 0.15);
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .journal-card .email-line {
+      font-size: 0.75rem;
+      color: #888;
+      margin-bottom: 14px;
+    }
+
+    .journal-card .email-line a {
+      color: #4d1ea3;
+      font-weight: 600;
+      word-break: break-all;
+      text-decoration: none;
+    }
+
+    .journal-card .email-line a:hover {
+      text-decoration: underline;
+    }
+
+    .journal-card .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-view-journal {
+      flex: 1;
+      background: linear-gradient(135deg, #4d1ea3, #7645fc);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-view-journal:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(77, 30, 163, 0.3);
+    }
+
+    .btn-submit-paper {
+      flex: 1;
+      background: #f4f0ff;
+      color: #4d1ea3;
+      border: 1.5px solid rgba(77, 30, 163, 0.2);
+      border-radius: 50px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+
+    .btn-submit-paper:hover {
+      background: #4d1ea3;
+      color: #fff;
+      border-color: #4d1ea3;
+    }
+
+    /* Category tabs */
+    .cat-tab {
+      border: 1.5px solid rgba(77, 30, 163, 0.2);
+      background: #fff;
+      color: #4d1ea3;
+      border-radius: 50px;
+      padding: 7px 18px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .cat-tab.active,
+    .cat-tab:hover {
+      background: #4d1ea3;
+      color: #fff;
+      border-color: #4d1ea3;
+    }
+
+    /* Search box */
+    .search-wrap {
+      border-radius: 50px;
+      overflow: hidden;
+      border: 1.5px solid rgba(77, 30, 163, 0.15);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      box-shadow: 0 2px 12px rgba(77, 30, 163, 0.06);
+    }
+
+    .search-wrap input {
+      border: none;
+      outline: none;
+      box-shadow: none;
+      padding: 12px 0;
+      font-size: 0.88rem;
+      background: transparent;
+      flex: 1;
+      color: #1a1a2e;
+    }
+
+    .search-wrap i {
+      color: #aaa;
+      font-size: 0.88rem;
+      margin-right: 10px;
+    }
+
+    /* no-results */
+    .no-results {
+      padding: 60px 20px;
+      text-align: center;
+      color: #888;
+    }
+
+    .no-results i {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      opacity: 0.3;
+      display: block;
+    }
+
+    /* Mobile topbar */
+    @media (max-width: 576px) {
+      #journal-viewer-topbar .journal-title-bar {
+        font-size: 0.82rem;
+      }
+
+      #journal-viewer-topbar {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar placeholder -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="flex-grow-1" style="text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;">
+    <div class="page-fade-in">
+
+      <!-- Hero Section -->
+      <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white" style="
+          background: linear-gradient(135deg, rgba(77, 30, 163, 0.92) 0%, rgba(118, 69, 252, 0.88) 100%), url('img/1.jpg') center/cover fixed;
+          padding: 180px 20px 140px;
+          min-height: 40vh;
+          position: relative;
+          overflow: hidden;
+          clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        ">
+        <div class="particles">
+          <div class="particle" style="width: 6px; height: 6px; top: 30%; left: 10%; animation: float 8s infinite;">
+          </div>
+          <div class="particle" style="width: 8px; height: 8px; top: 65%; left: 85%; animation: float 11s infinite;">
+          </div>
+          <div class="particle" style="width: 5px; height: 5px; top: 50%; left: 50%; animation: float 9s infinite 2s;">
+          </div>
+        </div>
+        <div class="container" style="position: relative; z-index: 1;">
+          <div class="animate__animated animate__fadeInDown">
+            <span
+              style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; padding: 6px 20px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px;">
+              <img src="img/sai.png" alt="Saishnaa Logo" style="height: 16px; width: auto; vertical-align: middle;" />
+              SSSL Open Access Journals
+            </span>
+          </div>
+          <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown"
+            style="font-family: Outfit, sans-serif; animation-delay: 0.1s;">
+            Academic Journals Portal
+          </h1>
+          <p class="fs-5 opacity-90 mx-auto animate__animated animate__fadeInUp"
+            style="max-width: 680px; line-height: 1.7; animation-delay: 0.2s;">
+            Saishnaa partners with <strong>SSSL International Journals</strong> — a premier open-access publishing
+            platform with Scopus-indexed, peer-reviewed journals across engineering, science, medicine, and humanities.
+          </p>
+          <div class="d-flex flex-wrap gap-3 justify-content-center mt-4 animate__animated animate__fadeInUp"
+            style="animation-delay: 0.3s;">
+            <div
+              style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 20px; font-size: 0.8rem; font-weight: 600;">
+              🏆 Scopus Indexed
+            </div>
+            <div
+              style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 20px; font-size: 0.8rem; font-weight: 600;">
+              📖 Open Access
+            </div>
+            <div
+              style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 20px; font-size: 0.8rem; font-weight: 600;">
+              🌍 Global Reach
+            </div>
+            <div
+              style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 20px; font-size: 0.8rem; font-weight: 600;">
+              ⚡ Fast Review
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Journals Catalog -->
+      <section class="py-5" style="background-color: #f4f5f8;">
+        <div class="container py-4">
+          <div class="text-center mb-5">
+            <h2 class="section-title mb-2">
+              <img src="img/sai.png" alt="Saishnaa Logo"
+                style="height: 36px; width: auto; margin-right: 12px; vertical-align: middle; margin-top: -6px;" />SSSL
+              International Journals
+            </h2>
+            <p class="text-muted" style="font-size: 0.9rem;">Click any journal to view its full content within this
+              page, or open it in a new tab.</p>
+          </div>
+
+          <!-- Search + Filter -->
+          <div class="row g-3 justify-content-between mb-5 align-items-center">
+            <div class="col-lg-5 col-md-6">
+              <div class="search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="journal-search-input" placeholder="Search journals by name, subject…" />
+              </div>
+            </div>
+            <div
+              class="col-lg-6 col-md-6 d-flex justify-content-md-end justify-content-center flex-wrap gap-2 mt-3 mt-md-0"
+              id="journal-category-tabs">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Stats bar -->
+          <div class="row g-3 mb-5" id="journals-stats-bar">
+            <div class="col-6 col-md-3">
+              <div class="text-center p-3 rounded-3"
+                style="background:#fff; box-shadow: 0 2px 12px rgba(77,30,163,0.07);">
+                <div style="font-size:1.6rem; font-weight:800; color:#4d1ea3; font-family:'Outfit',sans-serif;"
+                  id="stat-total">0</div>
+                <div style="font-size:0.75rem; color:#888; font-weight:600;">Total Journals</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="text-center p-3 rounded-3"
+                style="background:#fff; box-shadow: 0 2px 12px rgba(77,30,163,0.07);">
+                <div style="font-size:1.6rem; font-weight:800; color:#22c55e; font-family:'Outfit',sans-serif;"
+                  id="stat-scopus">0</div>
+                <div style="font-size:0.75rem; color:#888; font-weight:600;">Scopus Indexed</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="text-center p-3 rounded-3"
+                style="background:#fff; box-shadow: 0 2px 12px rgba(77,30,163,0.07);">
+                <div style="font-size:1.6rem; font-weight:800; color:#f59e0b; font-family:'Outfit',sans-serif;">Fast
+                </div>
+                <div style="font-size:0.75rem; color:#888; font-weight:600;">Peer Review</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="text-center p-3 rounded-3"
+                style="background:#fff; box-shadow: 0 2px 12px rgba(77,30,163,0.07);">
+                <div style="font-size:1.6rem; font-weight:800; color:#3b82f6; font-family:'Outfit',sans-serif;">Free
+                </div>
+                <div style="font-size:0.75rem; color:#888; font-weight:600;">Open Access</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Journals Grid -->
+          <div class="row g-4" id="journals-grid-container">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- All Journals Link -->
+          <div class="text-center mt-5 pt-3">
+            <p class="text-muted small mb-3">Want to browse all journals directly on the SSSL platform?</p>
+            <a href="https://internationaljournalssrg.org/ssrg-journals.html" target="_blank"
+              style="background: linear-gradient(135deg, #4d1ea3, #7645fc); color:#fff; border-radius:50px; padding:14px 36px; font-weight:700; font-size:0.9rem; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow: 0 6px 20px rgba(77,30,163,0.25); transition: all 0.2s;"
+              onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+              <i class="fas fa-globe"></i> Visit SSSL Journals Platform
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script>
+    // ===== SSRG JOURNALS DATA =====
+    const journalsList = [
+      {
+        code: "IJCSE",
+        title: "International Journal of Computer Science and Engineering",
+        category: "Engineering & Technology",
+        email: "ijcse@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJCSE/IJCSE_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJCSE/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJCSE/submit-article.html",
+        scopus: true,
+        tags: ["Computer Science", "Software Engineering", "AI"]
+      },
+      {
+        code: "IJECE",
+        title: "International Journal of Electronics and Communication Engineering",
+        category: "Engineering & Technology",
+        email: "ijece@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJECE/IJECE_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJECE/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJECE/submit-article.html",
+        scopus: true,
+        tags: ["Electronics", "Communication", "Signal Processing"]
+      },
+      {
+        code: "IJEEE",
+        title: "International Journal of Electrical and Electronics Engineering",
+        category: "Engineering & Technology",
+        email: "ijeee@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJEEE/IJEEE_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJEEE/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJEEE/submit-article.html",
+        scopus: true,
+        tags: ["Electrical", "Electronics", "Power Systems"]
+      },
+      {
+        code: "IJCE",
+        title: "International Journal of Civil Engineering",
+        category: "Engineering & Technology",
+        email: "ijce@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJCE/IJCE_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJCE/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJCE/submit-article.html",
+        scopus: false,
+        tags: ["Civil Engineering", "Structural", "Construction"]
+      },
+      {
+        code: "IJME",
+        title: "International Journal of Mechanical Engineering",
+        category: "Engineering & Technology",
+        email: "ijme@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJME/IJME_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJME/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJME/submit-article.html",
+        scopus: false,
+        tags: ["Mechanical", "Thermodynamics", "Manufacturing"]
+      },
+      {
+        code: "IJAES",
+        title: "International Journal of Agriculture & Environmental Science",
+        category: "Science & Biology",
+        email: "ijaes@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJAES/IJAES_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJAES/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJAES/submit-article.html",
+        scopus: false,
+        tags: ["Agriculture", "Environmental Science", "Biology"]
+      },
+      {
+        code: "IJMS",
+        title: "International Journal of Medical Science",
+        category: "Medical & Health",
+        email: "ijms@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJMS/IJMS_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJMS/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJMS/submit-article.html",
+        scopus: false,
+        tags: ["Medical Science", "Health", "Clinical Research"]
+      },
+      {
+        code: "IJEMS",
+        title: "International Journal of Economics and Management Studies",
+        category: "Social Science & Humanities",
+        email: "ijems@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJEMS/IJEMS_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJEMS/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJEMS/submit-article.html",
+        scopus: true,
+        tags: ["Economics", "Management", "Business"]
+      },
+      {
+        code: "IJAP",
+        title: "International Journal of Applied Physics",
+        category: "Science & Biology",
+        email: "ijap@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJAP/IJAP_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJAP/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJAP/submit-article.html",
+        scopus: false,
+        tags: ["Physics", "Applied Science", "Research"]
+      },
+      {
+        code: "IJHSS",
+        title: "International Journal of Humanities and Social Science",
+        category: "Social Science & Humanities",
+        email: "ijhss@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJHSS/IJHSS_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJHSS/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJHSS/submit-article.html",
+        scopus: false,
+        tags: ["Humanities", "Social Science", "Arts"]
+      },
+      {
+        code: "IJAC",
+        title: "International Journal of Applied Chemistry",
+        category: "Science & Biology",
+        email: "ijac@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJAC/IJAC_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJAC/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJAC/submit-article.html",
+        scopus: false,
+        tags: ["Chemistry", "Applied Science", "Materials"]
+      },
+      {
+        code: "IJIP",
+        title: "International Journal of Innovative Publications",
+        category: "Engineering & Technology",
+        email: "ijip@internationaljournalssrg.org",
+        banner: "https://internationaljournalssrg.org/public/assets/images/IJIP/IJIP_banner.webp",
+        viewUrl: "https://internationaljournalssrg.org/IJIP/index.html",
+        submitUrl: "https://internationaljournalssrg.org/IJIP/submit-article.html",
+        scopus: false,
+        tags: ["Innovative Research", "Multidisciplinary"]
+      },
+      {
+        code: "ML",
+        title: "Journal of Intelligent Machine Learning and IoT Enabled Applications",
+        category: "Engineering Journal",
+        email: "editor@jiml-iea.com",
+        banner: "https://jiml-iea.com/public/journals/1/pageHeaderLogoImage_en.jpg",
+        viewUrl: "https://jiml-iea.com/index.php/ml",
+        submitUrl: "https://jiml-iea.com/index.php/ml/about/submissions",
+        scopus: false,
+        tags: ["Machine Learning", "IoT", "Artificial Intelligence"]
+      }
+    ];
+
+    const categories = ["All", "Engineering & Technology", "Science & Biology", "Medical & Health", "Social Science & Humanities"];
+    let selectedCategory = "All";
+    let searchTerm = "";
+
+    // Update stats
+    document.getElementById("stat-total").textContent = journalsList.length;
+    document.getElementById("stat-scopus").textContent = journalsList.filter(j => j.scopus).length;
+
+    // Render category tabs
+    const tabsEl = document.getElementById("journal-category-tabs");
+    function renderTabs() {
+      tabsEl.innerHTML = "";
+      categories.forEach(cat => {
+        const btn = document.createElement("button");
+        btn.className = "cat-tab" + (selectedCategory === cat ? " active" : "");
+        btn.textContent = cat;
+        btn.addEventListener("click", () => {
+          selectedCategory = cat;
+          renderTabs();
+          renderJournals();
+        });
+        tabsEl.appendChild(btn);
+      });
+    }
+
+    // Render journals grid
+    const grid = document.getElementById("journals-grid-container");
+    function renderJournals() {
+      grid.innerHTML = "";
+
+      const filtered = journalsList.filter(j => {
+        const q = searchTerm.toLowerCase();
+        const matchSearch = !q ||
+          j.title.toLowerCase().includes(q) ||
+          j.code.toLowerCase().includes(q) ||
+          j.tags.some(t => t.toLowerCase().includes(q));
+        const matchCat = selectedCategory === "All" || j.category === selectedCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div class="col-12">
+              <div class="no-results">
+                <i class="fas fa-search-minus"></i>
+                <h5 style="font-family:'Outfit',sans-serif; font-weight:700; color:#1a1a2e;">No journals found</h5>
+                <p style="color:#888; font-size:0.88rem;">Try adjusting your search or category filter.</p>
+              </div>
+            </div>`;
+        return;
+      }
+
+      filtered.forEach(j => {
+        const col = document.createElement("div");
+        col.className = "col-12 col-md-6 col-lg-4 d-flex";
+
+        col.innerHTML = `
+            <div class="journal-card w-100" role="button" tabindex="0" 
+                 onclick="window.location.href='journal-details.html?code=${j.code}'"
+                 onkeydown="if(event.key==='Enter') window.location.href='journal-details.html?code=${j.code}'">
+              <div class="card-banner">
+                <img src="${j.banner}" alt="${j.title}" 
+                     onerror="this.src='https://via.placeholder.com/400x120/4d1ea3/fff?text=${j.code}'">
+                ${j.scopus ? '<span class="scopus-badge">Scopus</span>' : ''}
+              </div>
+              <div class="card-body-inner">
+                <span class="code-badge">${j.code}</span>
+                <h6>${j.title}</h6>
+                <div class="email-line">
+                  <span style="font-weight:600; color:#555; font-size:0.72rem; display:block; margin-bottom:2px;">📧 Submission Email:</span>
+                  <a href="mailto:${j.email}" onclick="event.stopPropagation()">${j.email}</a>
+                </div>
+                <div class="d-flex flex-wrap gap-1 mb-3">
+                  ${j.tags.map(t => `<span style="background:#f4f0ff; color:#4d1ea3; font-size:0.62rem; font-weight:600; padding:2px 8px; border-radius:20px; border:1px solid rgba(77,30,163,0.12);">${t}</span>`).join('')}
+                </div>
+                <div class="card-actions">
+                  <button class="btn-view-journal" onclick="event.stopPropagation(); window.location.href='journal-details.html?code=${j.code}'">
+                    <i class="fas fa-eye" style="font-size:0.72rem;"></i> View Journal
+                  </button>
+                  <a class="btn-submit-paper" href="journal-details.html?code=${j.code}#paper-submission" onclick="event.stopPropagation()">
+                    <i class="fas fa-paper-plane" style="font-size:0.72rem;"></i> Submit Paper
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        grid.appendChild(col);
+      });
+    }
+
+    // Search
+    document.getElementById("journal-search-input").addEventListener("input", function (e) {
+      searchTerm = e.target.value.trim();
+      renderJournals();
+    });
+
+    // Initial render
+    renderTabs();
+    renderJournals();
+  </script>
+</body>
+
+</html>
